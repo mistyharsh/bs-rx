@@ -18,5 +18,8 @@
     "homepage": "https://github.com/mistyharsh/bs-marblejs#readme",
     "devDependencies": {
         "bs-platform": "^4.0.18"
+    },
+    "dependencies": {
+        "rxjs": "^6.4.0"
     }
 }

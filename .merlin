@@ -6,6 +6,8 @@ S /home/harshal/ub/bs-marblejs/node_modules/bs-platform/lib/ocaml
 B /home/harshal/ub/bs-marblejs/node_modules/bs-platform/lib/ocaml
 FLG -nostdlib -color always
 FLG -w -30-40+6+7+27+32..39+44+45+101
-S src
-B lib/bs/src
+S src-example
+B lib/bs/src-example
+S src/rx
+B lib/bs/src/rx
 ####BSB GENERATED: NO EDIT}

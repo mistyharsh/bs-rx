@@ -1,12 +1,20 @@
 {
     "name": "bs-marblejs",
     "version": "0.1.0",
-    "sources": {
-        "dir" : "src",
-        "subdirs" : true
-    },
+    "sources":
+    [
+        {
+            "dir" : "src",
+            "subdirs" : true
+        },
+        {
+            "dir" : "src-example",
+            "subdirs" : true,
+            "type": "dev"
+        }
+    ],
     "package-specs": {
-        "module": "commonjs",
+        "module": "es6",
         "in-source": true
     },
     "suffix": ".bs.js",
