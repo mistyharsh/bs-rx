@@ -16,13 +16,17 @@ var subscription2 = stream1.subscribe(observer1);
 
 subscription1.unsubscribe();
 
-Operators.map((function (x) {
-        return x + 5 | 0;
-      }), Operators.map((function (item, index) {
-            return (item + index | 0) + 4 | 0;
-          }), Operators.map((function (item) {
-                return item + 3 | 0;
-              }), stream1)));
+Operators.debounceTime(100, undefined, Operators.debounceTime(1000, true, Operators.filter((function (_x, _y) {
+                return false;
+              }), Operators.switchMap((function (param) {
+                    return /* array */[10];
+                  }), Operators.map((function (x) {
+                        return x + 5 | 0;
+                      }), Operators.map((function (item, index) {
+                            return (item + index | 0) + 4 | 0;
+                          }), Operators.map((function (item) {
+                                return item + 3 | 0;
+                              }), stream1)))))));
 
 export {
   stream1 ,
