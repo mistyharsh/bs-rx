@@ -1,11 +1,11 @@
 open Rx
 
 (* OPERATOR: debounceTime *)
-external _debounceTime : int -> ?scheduler:bool -> unit -> ('a, 'b) operator = "debounceTime"
+external _debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = "debounceTime"
   [@@bs.module "rxjs/operators"]
 
-(* let debounceTime timerInMs ?scheduler stream = (_debounceTime timerInMs ~scheduler ()) stream *)
 
+let debounceTime timerInMs ?scheduler () stream = stream |> _debounceTime timerInMs ?scheduler ()
 
 (* OPERATOR: filter *)
 external _filter : ('a -> bool [@bs.uncurry]) -> ('a, 'a) operator = "filter"
