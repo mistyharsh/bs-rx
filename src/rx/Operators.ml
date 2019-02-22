@@ -1,5 +1,11 @@
 open Rx
 
+(* OPERATOR: catchError *)
+external _catchError : ('err -> 'a observable -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "catchError"
+  [@@bs.module "rxjs/operators"]
+
+let catchError selector stream = stream |> _catchError selector
+
 (* OPERATOR: debounceTime *)
 external _debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = "debounceTime"
   [@@bs.module "rxjs/operators"]

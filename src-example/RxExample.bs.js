@@ -13,30 +13,33 @@ var subscription1 = stream1.subscribe((function (myVal) {
         return /* () */0;
       }));
 
-Operators$BsMarblejs.map((function (item) {
+var x = Operators$BsMarblejs.map((function (item) {
         return item + 20 | 0;
       }), stream1);
 
-function x(param) {
+function opr1(param) {
   return Operators$BsMarblejs.map((function (item) {
                 return item + 5 | 0;
               }), param);
 }
 
-var y = Operators$BsMarblejs.debounceTime(100, undefined, /* () */0, Operators$BsMarblejs.debounceTime(1000, Caml_option.some(scheduler), /* () */0, Operators$BsMarblejs.filteri((function (_x, _y) {
-                return false;
-              }), Operators$BsMarblejs.switchToArray((function (param) {
-                    return /* array */[10];
-                  }), Operators$BsMarblejs.map((function (x) {
-                        return x + 5 | 0;
-                      }), Operators$BsMarblejs.mapi((function (item, index) {
-                            return (item + index | 0) + 4 | 0;
-                          }), x(stream1)))))));
+var y = Operators$BsMarblejs.catchError((function (_err, _caught) {
+        return stream1;
+      }), Operators$BsMarblejs.debounceTime(100, undefined, /* () */0, Operators$BsMarblejs.debounceTime(1000, Caml_option.some(scheduler), /* () */0, Operators$BsMarblejs.filteri((function (_x, _y) {
+                    return false;
+                  }), Operators$BsMarblejs.switchToArray((function (param) {
+                        return /* array */[10];
+                      }), Operators$BsMarblejs.map((function (x) {
+                            return x + 5 | 0;
+                          }), Operators$BsMarblejs.mapi((function (item, index) {
+                                return (item + index | 0) + 4 | 0;
+                              }), opr1(stream1))))))));
 
 export {
   stream1 ,
   subscription1 ,
   x ,
+  opr1 ,
   y ,
   
 }

@@ -4,6 +4,10 @@ import * as Curry from "bs-platform/lib/es6/curry.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
 import * as Operators from "rxjs/operators";
 
+function catchError(selector, stream) {
+  return Curry._1(Operators.catchError(Curry.__2(selector)), stream);
+}
+
 function debounceTime(timerInMs, scheduler, param, stream) {
   return Curry._1(Operators.debounceTime(timerInMs, scheduler !== undefined ? Caml_option.valFromOption(scheduler) : undefined), stream);
 }
@@ -38,6 +42,7 @@ function switchToPromise(project, stream) {
 }
 
 export {
+  catchError ,
   debounceTime ,
   filter ,
   filteri ,
