@@ -45,6 +45,18 @@ function mapi(project, stream) {
   return Curry._1(Operators.map(Curry.__2(project)), stream);
 }
 
+function mergeMap(project, stream) {
+  return Curry._1(Operators.mergeMap(Curry.__1(project)), stream);
+}
+
+function mergeMapArray(project, stream) {
+  return Curry._1(Operators.mergeMap(Curry.__1(project)), stream);
+}
+
+function mergeMapPromise(project, stream) {
+  return Curry._1(Operators.mergeMap(Curry.__1(project)), stream);
+}
+
 function switchMap(project, stream) {
   return Curry._1(Operators.switchMap(Curry.__1(project)), stream);
 }
@@ -87,6 +99,9 @@ export {
   filteri ,
   map ,
   mapi ,
+  mergeMap ,
+  mergeMapArray ,
+  mergeMapPromise ,
   switchMap ,
   switchToArray ,
   switchToPromise ,

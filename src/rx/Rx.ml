@@ -26,14 +26,3 @@ external subscribe : 'a observable -> ('a -> unit) -> subscription = "" [@@bs.se
 external subscribeObs : 'a observable -> 'a observer -> subscription = "subscribe" [@@bs.send]
 
 external unsubscribe : subscription -> unit = "" [@@bs.send]
-
-
-(* mergeMap operator *)
-(* external mergeMap : ('a -> 'b observable [@bs.uncurry]) -> 'a observable -> 'b observable = "mergeMap"
-  [@@bs.module "rxjs/operators"]
-
-external mergeToArray : ('a -> 'b array [@bs.uncurry]) -> 'a observable -> 'b observable = "mergeMap"
-  [@@bs.module "rxjs/operators"]
-
-external mergeToPromise : ('a -> ('b, 'e) Js.promise [@bs.uncurry]) -> 'a observable -> 'b observable = "mergeMap"
-  [@@bs.module "rxjs/operators"] *)

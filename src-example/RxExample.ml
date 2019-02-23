@@ -36,4 +36,6 @@ let y = opr1 stream1
   |> withLatestFrom3 stream1 stream1
   |> withLatestFrom4 stream1 stream1 stream1
   |> withLatestFrom5 stream1 stream1 stream1 stream1
+  |> mergeMap (fun _x -> stream1)
+  |> mergeMapArray (fun _x -> [| 10; 20 |])
   |> deferArray begin fun () -> [| 10; 20 |] end

@@ -48,6 +48,21 @@ external _mapi : ('a -> int -> 'b [@bs.uncurry]) -> ('a, 'b) operator = "map"
 let map project stream = stream |> _map project
 let mapi project stream =  stream |> _mapi project
 
+(* OPERATOR: mergeMap *)
+
+external _mergeMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "mergeMap"
+  [@@bs.module "rxjs/operators"]
+
+external _mergeMapArray : ('a -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = "mergeMap"
+  [@@bs.module "rxjs/operators"]
+
+external _mergeMapPromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) operator = "mergeMap"
+  [@@bs.module "rxjs/operators"]
+
+let mergeMap project stream = stream |> _mergeMap project
+let mergeMapArray project stream = stream |> _mergeMapArray project
+let mergeMapPromise project stream = stream |> _mergeMapPromise project
+
 
 (* OPERATOR: switchMap *)
 external _switchMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
