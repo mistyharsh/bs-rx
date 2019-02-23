@@ -30,3 +30,5 @@ let y = opr1 stream1
   |> debounceTime 1000 ~scheduler ()
   |> debounceTime 100 ()
   |> catchError (fun _err _caught -> stream1)
+  |> take 100
+  |> withLatestFrom stream1

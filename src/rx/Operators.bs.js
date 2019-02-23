@@ -2,6 +2,7 @@
 
 import * as Curry from "bs-platform/lib/es6/curry.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
+import * as Operator from "rxjs/operator";
 import * as Operators from "rxjs/operators";
 
 function catchError(selector, stream) {
@@ -41,6 +42,14 @@ function switchToPromise(project, stream) {
   return Curry._1(Operators.switchMap(Curry.__1(project)), stream);
 }
 
+function take(count, stream) {
+  return Curry._1(Operators.take(count), stream);
+}
+
+function withLatestFrom(stream, sourceStream) {
+  return Curry._1(Operator.withLatestFrom(stream), sourceStream);
+}
+
 export {
   catchError ,
   debounceTime ,
@@ -51,6 +60,8 @@ export {
   switchMap ,
   switchToArray ,
   switchToPromise ,
+  take ,
+  withLatestFrom ,
   
 }
-/* rxjs/operators Not a pure module */
+/* rxjs/operator Not a pure module */

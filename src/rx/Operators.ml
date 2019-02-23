@@ -51,3 +51,15 @@ let switchMap project stream =
 
 let switchToArray project stream = stream |> _switchToArray project
 let switchToPromise project stream = stream |> _switchToPromise project
+
+(* OPERATOR: take *)
+external _take : int -> ('a, 'a) operator = "take"
+  [@@bs.module "rxjs/operators"]
+
+let take count stream = stream |> _take count
+
+(* OPERATOR: withLatestFrom *)
+external _withLatestFrom2 : 'b observable -> ('a, ('a * 'b)) operator = "withLatestFrom"
+  [@@bs.module "rxjs/operator"]
+
+let withLatestFrom stream sourceStream = sourceStream |> _withLatestFrom2 stream

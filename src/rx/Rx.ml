@@ -37,9 +37,3 @@ external mergeToArray : ('a -> 'b array [@bs.uncurry]) -> 'a observable -> 'b ob
 
 external mergeToPromise : ('a -> ('b, 'e) Js.promise [@bs.uncurry]) -> 'a observable -> 'b observable = "mergeMap"
   [@@bs.module "rxjs/operators"] *)
-
-
-(* withLatestFrom operator *)
-(* external withLatestFrom2 : 'a observable ->  -> 'b observable -> ('b * 'a) = "withLatestFrom"
-  [@@bs.module "rxjs/operator"] *)
-
