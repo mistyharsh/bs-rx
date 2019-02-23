@@ -41,3 +41,5 @@ let y = opr1 stream1
   |> mergeMap (fun _x -> stream1)
   |> mergeMapArray (fun _x -> [| 10; 20 |])
   |> deferArray begin fun () -> [| 10; 20 |] end
+  |> distinctUntilChanged ()
+  |> distinctUntilChanged ~compare:(fun _x _y -> true) ()

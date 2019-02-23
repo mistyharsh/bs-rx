@@ -29,6 +29,10 @@ function deferArray(factory, stream) {
   return Curry._1(Operators.defer(factory), stream);
 }
 
+function distinctUntilChanged(compare, param, stream) {
+  return Curry._1(Operators.distinctUntilChanged(Caml_option.option_get(Curry.__2(compare))), stream);
+}
+
 function filter(predicate, stream) {
   return Curry._1(Operators.filter(Curry.__1(predicate)), stream);
 }
@@ -95,6 +99,7 @@ export {
   defer ,
   deferPromise ,
   deferArray ,
+  distinctUntilChanged ,
   filter ,
   filteri ,
   map ,

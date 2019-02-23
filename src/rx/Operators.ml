@@ -26,6 +26,12 @@ let defer factory stream = stream |> _defer factory
 let deferPromise factory stream = stream |> _deferPromise factory
 let deferArray factory stream = stream |> _deferArray factory
 
+(* OPERATOR: distinctUntilChanged *)
+external _distinctUntilChanged : ?compare:('a -> 'a -> bool [@bs.uncurry]) -> unit -> ('a, 'a) operator = "distinctUntilChanged"
+  [@@bs.module "rxjs/operators"]
+
+let distinctUntilChanged ?compare () stream = stream |> _distinctUntilChanged ?compare ()
+
 
 (* OPERATOR: filter *)
 external _filter : ('a -> bool [@bs.uncurry]) -> ('a, 'a) operator = "filter"
