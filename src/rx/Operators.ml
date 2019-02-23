@@ -10,8 +10,22 @@ let catchError selector stream = stream |> _catchError selector
 external _debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = "debounceTime"
   [@@bs.module "rxjs/operators"]
 
-
 let debounceTime timerInMs ?scheduler () stream = stream |> _debounceTime timerInMs ?scheduler ()
+
+(* OPERATOR: defer *)
+external _defer : (unit -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "defer"
+  [@@bs.module "rxjs/operators"]
+
+external _deferPromise : (unit -> 'b Js.Promise.t [@bs.uncurry]) -> ('a, 'b) operator = "defer"
+  [@@bs.module "rxjs/operators"]
+
+external _deferArray : (unit -> 'b array) -> ('a, 'b) operator = "defer"
+  [@@bs.module "rxjs/operators"]
+
+let defer factory stream = stream |> _defer factory
+let deferPromise factory stream = stream |> _deferPromise factory
+let deferArray factory stream = stream |> _deferArray factory
+
 
 (* OPERATOR: filter *)
 external _filter : ('a -> bool [@bs.uncurry]) -> ('a, 'a) operator = "filter"
@@ -45,10 +59,7 @@ external _switchToArray : ('a -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = 
 external _switchToPromise : ('a -> ('b, 'e) Js.promise [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
   [@@bs.module "rxjs/operators"]
 
-let switchMap project stream =
-  let operator = _switchMap project in
-  operator stream
-
+let switchMap project stream = stream |> _switchMap project
 let switchToArray project stream = stream |> _switchToArray project
 let switchToPromise project stream = stream |> _switchToPromise project
 

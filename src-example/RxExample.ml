@@ -36,4 +36,4 @@ let y = opr1 stream1
   |> withLatestFrom3 stream1 stream1
   |> withLatestFrom4 stream1 stream1 stream1
   |> withLatestFrom5 stream1 stream1 stream1 stream1
-
+  |> deferArray begin fun () -> [| 10; 20 |] end

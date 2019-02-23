@@ -13,6 +13,22 @@ function debounceTime(timerInMs, scheduler, param, stream) {
   return Curry._1(Operators.debounceTime(timerInMs, scheduler !== undefined ? Caml_option.valFromOption(scheduler) : undefined), stream);
 }
 
+function defer(factory, stream) {
+  return Curry._1(Operators.defer((function () {
+                    return Curry._1(factory, /* () */0);
+                  })), stream);
+}
+
+function deferPromise(factory, stream) {
+  return Curry._1(Operators.defer((function () {
+                    return Curry._1(factory, /* () */0);
+                  })), stream);
+}
+
+function deferArray(factory, stream) {
+  return Curry._1(Operators.defer(factory), stream);
+}
+
 function filter(predicate, stream) {
   return Curry._1(Operators.filter(Curry.__1(predicate)), stream);
 }
@@ -30,8 +46,7 @@ function mapi(project, stream) {
 }
 
 function switchMap(project, stream) {
-  var operator = Operators.switchMap(Curry.__1(project));
-  return Curry._1(operator, stream);
+  return Curry._1(Operators.switchMap(Curry.__1(project)), stream);
 }
 
 function switchToArray(project, stream) {
@@ -65,6 +80,9 @@ function withLatestFrom5(stream1, stream2, stream3, stream4, sourceStream) {
 export {
   catchError ,
   debounceTime ,
+  defer ,
+  deferPromise ,
+  deferArray ,
   filter ,
   filteri ,
   map ,
