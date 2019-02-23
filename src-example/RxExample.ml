@@ -22,6 +22,8 @@ let subscription2 = subscribeObs stream1 observer1 *)
 let opr1 = map (fun item -> item + 5)
 let _ = catchError (fun _err _caught -> stream1)
 
+let mergedStream = merge2 stream1 stream1
+
 let y = opr1 stream1
   |> mapi (fun item index -> item + index + 4)
   |> map begin fun x -> x + 5 end

@@ -100,9 +100,11 @@ external _withLatestFrom5 :
   ('a, ('a * 'b * 'c * 'd * 'e)) operator = "withLatestFrom"
   [@@bs.module "rxjs/operator"]
 
-let withLatestFrom2 stream sourceStream = sourceStream |> _withLatestFrom2 stream
+let withLatestFrom2 stream sourceStream
+  = sourceStream |> _withLatestFrom2 stream
 
-let withLatestFrom3 stream1 stream2 sourceStream = sourceStream |> _withLatestFrom3 stream1 stream2
+let withLatestFrom3 stream1 stream2 sourceStream
+  = sourceStream |> _withLatestFrom3 stream1 stream2
 
 let withLatestFrom4 stream1 stream2 stream3 sourceStream =
   sourceStream |> _withLatestFrom4 stream1 stream2 stream3

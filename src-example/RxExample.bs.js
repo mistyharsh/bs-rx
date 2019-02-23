@@ -23,6 +23,8 @@ function opr1(param) {
               }), param);
 }
 
+var mergedStream = Rxjs.merge(stream1, stream1);
+
 var y = Operators$BsMarblejs.deferArray((function (param) {
         return /* array */[
                 10,
@@ -54,6 +56,7 @@ export {
   subscription1 ,
   x ,
   opr1 ,
+  mergedStream ,
   y ,
   
 }

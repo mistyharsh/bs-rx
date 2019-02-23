@@ -26,3 +26,18 @@ external subscribe : 'a observable -> ('a -> unit) -> subscription = "" [@@bs.se
 external subscribeObs : 'a observable -> 'a observer -> subscription = "subscribe" [@@bs.send]
 
 external unsubscribe : subscription -> unit = "" [@@bs.send]
+
+
+type any
+type anyObs = any observable
+
+external merge2 : 'a observable -> 'b observable -> anyObs = "merge" [@@bs.module "rxjs"]
+external merge3 : 'a observable -> 'b observable -> 'c observable -> anyObs = "merge" [@@bs.module "rxjs"]
+
+external merge4 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> anyObs = "merge"
+  [@@bs.module "rxjs"]
+
+external merge5 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> anyObs = "merge"
+  [@@bs.module "rxjs"]
