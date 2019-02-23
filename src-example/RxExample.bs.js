@@ -23,17 +23,19 @@ function opr1(param) {
               }), param);
 }
 
-var y = Operators$BsMarblejs.withLatestFrom(stream1, Operators$BsMarblejs.take(100, Operators$BsMarblejs.catchError((function (_err, _caught) {
-                return stream1;
-              }), Operators$BsMarblejs.debounceTime(100, undefined, /* () */0, Operators$BsMarblejs.debounceTime(1000, Caml_option.some(scheduler), /* () */0, Operators$BsMarblejs.filteri((function (_x, _y) {
-                            return false;
-                          }), Operators$BsMarblejs.switchToArray((function (param) {
-                                return /* array */[10];
-                              }), Operators$BsMarblejs.map((function (x) {
-                                    return x + 5 | 0;
-                                  }), Operators$BsMarblejs.mapi((function (item, index) {
-                                        return (item + index | 0) + 4 | 0;
-                                      }), opr1(stream1))))))))));
+var y = Operators$BsMarblejs.withLatestFrom5(stream1, stream1, stream1, stream1, Operators$BsMarblejs.withLatestFrom4(stream1, stream1, stream1, Operators$BsMarblejs.withLatestFrom3(stream1, stream1, Operators$BsMarblejs.withLatestFrom2(stream1, Operators$BsMarblejs.take(100, Operators$BsMarblejs.catchError((function (_err, _caught) {
+                            return stream1;
+                          }), Operators$BsMarblejs.debounceTime(100, undefined, /* () */0, Operators$BsMarblejs.debounceTime(1000, Caml_option.some(scheduler), /* () */0, Operators$BsMarblejs.filteri((function (_x, _y) {
+                                        return false;
+                                      }), Operators$BsMarblejs.switchToArray((function (param) {
+                                            return /* array */[10];
+                                          }), Operators$BsMarblejs.switchMap((function (_x) {
+                                                return stream1;
+                                              }), Operators$BsMarblejs.map((function (x) {
+                                                    return x + 5 | 0;
+                                                  }), Operators$BsMarblejs.mapi((function (item, index) {
+                                                        return (item + index | 0) + 4 | 0;
+                                                      }), opr1(stream1))))))))))))));
 
 export {
   stream1 ,

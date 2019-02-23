@@ -25,10 +25,15 @@ let _ = catchError (fun _err _caught -> stream1)
 let y = opr1 stream1
   |> mapi (fun item index -> item + index + 4)
   |> map begin fun x -> x + 5 end
+  |> switchMap (fun _x -> stream1)
   |> switchToArray (fun _ -> [| 10 |])
   |> filteri (fun _x _y -> false)
   |> debounceTime 1000 ~scheduler ()
   |> debounceTime 100 ()
   |> catchError (fun _err _caught -> stream1)
   |> take 100
-  |> withLatestFrom stream1
+  |> withLatestFrom2 stream1
+  |> withLatestFrom3 stream1 stream1
+  |> withLatestFrom4 stream1 stream1 stream1
+  |> withLatestFrom5 stream1 stream1 stream1 stream1
+

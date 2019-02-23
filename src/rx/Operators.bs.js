@@ -46,8 +46,20 @@ function take(count, stream) {
   return Curry._1(Operators.take(count), stream);
 }
 
-function withLatestFrom(stream, sourceStream) {
+function withLatestFrom2(stream, sourceStream) {
   return Curry._1(Operator.withLatestFrom(stream), sourceStream);
+}
+
+function withLatestFrom3(stream1, stream2, sourceStream) {
+  return Curry._1(Operator.withLatestFrom(stream1, stream2), sourceStream);
+}
+
+function withLatestFrom4(stream1, stream2, stream3, sourceStream) {
+  return Curry._1(Operator.withLatestFrom(stream1, stream2, stream3), sourceStream);
+}
+
+function withLatestFrom5(stream1, stream2, stream3, stream4, sourceStream) {
+  return Curry._1(Operator.withLatestFrom(stream1, stream2, stream3, stream4), sourceStream);
 }
 
 export {
@@ -61,7 +73,10 @@ export {
   switchToArray ,
   switchToPromise ,
   take ,
-  withLatestFrom ,
+  withLatestFrom2 ,
+  withLatestFrom3 ,
+  withLatestFrom4 ,
+  withLatestFrom5 ,
   
 }
 /* rxjs/operator Not a pure module */
