@@ -3,6 +3,7 @@
 import * as Rxjs from "rxjs";
 import * as Caml_format from "bs-platform/lib/es6/caml_format.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
+import * as Rx$BsMarblejs from "../src/rx/Rx.bs.js";
 import * as Operators$BsMarblejs from "../src/rx/Operators.bs.js";
 
 var stream1 = Rxjs.Observable.create((function (obs) {
@@ -59,7 +60,7 @@ var merged = Operators$BsMarblejs.map((function (x) {
 
 var y = Operators$BsMarblejs.distinctUntilChanged((function (_x, _y) {
         return true;
-      }), /* () */0, Operators$BsMarblejs.distinctUntilChanged(undefined, /* () */0, Operators$BsMarblejs.deferArray((function (param) {
+      }), /* () */0, Operators$BsMarblejs.distinctUntilChanged(undefined, /* () */0, Rx$BsMarblejs.deferArray((function (param) {
                 return /* array */[
                         10,
                         20

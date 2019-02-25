@@ -13,22 +13,6 @@ function debounceTime(timerInMs, scheduler, param, stream) {
   return Curry._1(Operators.debounceTime(timerInMs, scheduler !== undefined ? Caml_option.valFromOption(scheduler) : undefined), stream);
 }
 
-function defer(factory, stream) {
-  return Curry._1(Operators.defer((function () {
-                    return Curry._1(factory, /* () */0);
-                  })), stream);
-}
-
-function deferPromise(factory, stream) {
-  return Curry._1(Operators.defer((function () {
-                    return Curry._1(factory, /* () */0);
-                  })), stream);
-}
-
-function deferArray(factory, stream) {
-  return Curry._1(Operators.defer(factory), stream);
-}
-
 function distinctUntilChanged(compare, param, stream) {
   return Curry._1(Operators.distinctUntilChanged(Caml_option.option_get(Curry.__2(compare))), stream);
 }
@@ -96,9 +80,6 @@ function withLatestFrom5(stream1, stream2, stream3, stream4, sourceStream) {
 export {
   catchError ,
   debounceTime ,
-  defer ,
-  deferPromise ,
-  deferArray ,
   distinctUntilChanged ,
   filter ,
   filteri ,

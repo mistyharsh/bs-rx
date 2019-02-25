@@ -12,19 +12,6 @@ external _debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operato
 
 let debounceTime timerInMs ?scheduler () stream = stream |> _debounceTime timerInMs ?scheduler ()
 
-(* OPERATOR: defer *)
-external _defer : (unit -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "defer"
-  [@@bs.module "rxjs/operators"]
-
-external _deferPromise : (unit -> 'b Js.Promise.t [@bs.uncurry]) -> ('a, 'b) operator = "defer"
-  [@@bs.module "rxjs/operators"]
-
-external _deferArray : (unit -> 'b array) -> ('a, 'b) operator = "defer"
-  [@@bs.module "rxjs/operators"]
-
-let defer factory stream = stream |> _defer factory
-let deferPromise factory stream = stream |> _deferPromise factory
-let deferArray factory stream = stream |> _deferArray factory
 
 (* OPERATOR: distinctUntilChanged *)
 external _distinctUntilChanged : ?compare:('a -> 'a -> bool [@bs.uncurry]) -> unit -> ('a, 'a) operator = "distinctUntilChanged"
