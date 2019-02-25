@@ -70,6 +70,9 @@ let mergeMapArray project stream = stream |> _mergeMapArray project
 let mergeMapPromise project stream = stream |> _mergeMapPromise project
 
 
+(* OPERATOR: _startWith *)
+
+
 (* OPERATOR: switchMap *)
 external _switchMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
   [@@bs.module "rxjs/operators"]

@@ -2,7 +2,7 @@ open Rx
 open Operators
 
 let stream1 = create (fun obs -> ignore(next obs 20))
-
+let stream2 = create (fun obs -> ignore(next obs "Hello world"))
 
 let subscription1 = subscribe stream1 begin
     fun myVal -> ignore(myVal)
@@ -17,12 +17,22 @@ let subscription2 = subscribeObs stream1 observer1 *)
 
 (* let _ = unsubscribe subscription1 *)
 
-(* let x = map (fun item -> item + 4); *)
+let mapped = map (fun item -> item + 4)
 
 let opr1 = map (fun item -> item + 5)
 let _ = catchError (fun _err _caught -> stream1)
 
-let mergedStream = merge2 stream1 stream1
+type data = [ `Int of int  | `Str of string ]
+
+let stream11 : data observable = map (fun x -> `Int x) stream1
+let stream22 : data observable = stream2 |> map (fun x -> `Str x)
+
+let merged = merge [| stream11; stream22 |]
+  |> map begin
+      fun x -> match x with
+        | `Int v -> v
+        | `Str v -> int_of_string(v)
+    end
 
 let y = opr1 stream1
   |> mapi (fun item index -> item + index + 4)
