@@ -50,6 +50,10 @@ var stream22 = Operators$BsMarblejs.map((function (x) {
               ];
       }), stream2);
 
+var emptyIntObs = Rxjs.empty();
+
+var merged2 = Rxjs.merge(stream1, Rxjs.empty());
+
 var merged = Operators$BsMarblejs.map((function (x) {
         if (x[0] >= 4153489) {
           return Caml_format.caml_int_of_string(x[1]);
@@ -95,6 +99,8 @@ export {
   opr1 ,
   stream11 ,
   stream22 ,
+  emptyIntObs ,
+  merged2 ,
   merged ,
   y ,
   

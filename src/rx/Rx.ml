@@ -27,7 +27,7 @@ external subscribeObs : 'a observable -> 'a observer -> subscription = "subscrib
 
 external unsubscribe : subscription -> unit = "" [@@bs.send]
 
-(* OPERATION: defer *)
+(* OPERATOR: defer *)
 external _defer : (unit -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "defer"
   [@@bs.module "rxjs"]
 
@@ -41,6 +41,13 @@ let defer factory stream = stream |> _defer factory
 let deferPromise factory stream = stream |> _deferPromise factory
 let deferArray factory stream = stream |> _deferArray factory
 
-(* OPERATION: merge *)
+external empty : unit -> 'a observable = ""
+  [@@bs.module "rxjs"]
+
+(* OPERATOR: merge *)
 external merge : 'a observable array -> 'a observable = ""
   [@@bs.module "rxjs"] [@@bs.variadic]
+
+(* OPERATOR: of *)
+(* Note: No support for scheduler argument *)
+external off : 'a array -> 'a observable = "" [@@bs.module "path"] [@@bs.variadic]
