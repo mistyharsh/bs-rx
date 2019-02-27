@@ -1,4 +1,3 @@
-
 type 'a observer
 
 type 'a observable
@@ -41,13 +40,17 @@ let defer factory stream = stream |> _defer factory
 let deferPromise factory stream = stream |> _deferPromise factory
 let deferArray factory stream = stream |> _deferArray factory
 
-external empty : unit -> 'a observable = ""
+external empty : 'a observable = "EMPTY"
   [@@bs.module "rxjs"]
 
 (* OPERATOR: merge *)
 external merge : 'a observable array -> 'a observable = ""
   [@@bs.module "rxjs"] [@@bs.variadic]
 
+external never : 'a observable = "NEVER"
+  [@@bs.module "rxjs"]
+
 (* OPERATOR: of *)
 (* Note: No support for scheduler argument *)
-external off : 'a array -> 'a observable = "" [@@bs.module "path"] [@@bs.variadic]
+external off : 'a array -> 'a observable = "of"
+  [@@bs.module "rxjs"] [@@bs.variadic]

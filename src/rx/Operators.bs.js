@@ -17,6 +17,10 @@ function distinctUntilChanged(compare, param, stream) {
   return Curry._1(Operators.distinctUntilChanged(Caml_option.option_get(Curry.__2(compare))), stream);
 }
 
+function elementAt(index, $$default, param, stream) {
+  return Curry._1(Operators.elementAt(index, $$default !== undefined ? Caml_option.valFromOption($$default) : undefined), stream);
+}
+
 function filter(predicate, stream) {
   return Curry._1(Operators.filter(Curry.__1(predicate)), stream);
 }
@@ -81,6 +85,7 @@ export {
   catchError ,
   debounceTime ,
   distinctUntilChanged ,
+  elementAt ,
   filter ,
   filteri ,
   map ,

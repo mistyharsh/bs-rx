@@ -19,6 +19,11 @@ external _distinctUntilChanged : ?compare:('a -> 'a -> bool [@bs.uncurry]) -> un
 
 let distinctUntilChanged ?compare () stream = stream |> _distinctUntilChanged ?compare ()
 
+(* OPERATOR: elementAt *)
+external _elementAt : int -> ?default:'a -> unit -> ('a, 'a) operator = "elementAt"
+  [@@bs.module "rxjs/operators"]
+
+let elementAt index ?default () stream = stream |> _elementAt index ?default ()
 
 (* OPERATOR: filter *)
 external _filter : ('a -> bool [@bs.uncurry]) -> ('a, 'a) operator = "filter"
@@ -40,6 +45,10 @@ external _mapi : ('a -> int -> 'b [@bs.uncurry]) -> ('a, 'b) operator = "map"
 
 let map project stream = stream |> _map project
 let mapi project stream =  stream |> _mapi project
+
+(* OPERATOR: mapTo *)
+external mapTo : 'b -> ('a, 'b) operator = "mapTo"
+  [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: mergeMap *)
 

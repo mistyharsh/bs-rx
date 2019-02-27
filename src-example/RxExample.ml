@@ -27,9 +27,7 @@ type data = [ `Int of int  | `Str of string ]
 let stream11 : data observable = map (fun x -> `Int x) stream1
 let stream22 : data observable = stream2 |> map (fun x -> `Str x)
 
-let emptyIntObs : int observable = empty ()
-
-let merged2 = merge [| stream1; empty () |]
+let merged2 = merge [| stream1; empty; |]
 
 let merged = merge [| stream11; stream22 |]
   |> map begin
@@ -38,7 +36,7 @@ let merged = merge [| stream11; stream22 |]
         | `Str v -> int_of_string(v)
     end
 
-let y = opr1 stream1
+let y1 = opr1 stream1
   |> mapi (fun item index -> item + index + 4)
   |> map begin fun x -> x + 5 end
   |> switchMap (fun _x -> stream1)
@@ -57,3 +55,7 @@ let y = opr1 stream1
   |> deferArray begin fun () -> [| 10; 20 |] end
   |> distinctUntilChanged ()
   |> distinctUntilChanged ~compare:(fun _x _y -> true) ()
+  |> elementAt 0 ()
+  |> elementAt 100 ~default:10 ()
+
+let y2 = stream1 |> mapTo 10
