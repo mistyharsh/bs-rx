@@ -57,5 +57,7 @@ let y1 = opr1 stream1
   |> distinctUntilChanged ~compare:(fun _x _y -> true) ()
   |> elementAt 0 ()
   |> elementAt 100 ~default:10 ()
+  |> scan (fun _acc nextVal _index -> nextVal) 10
+
 
 let y2 = stream1 |> mapTo 10

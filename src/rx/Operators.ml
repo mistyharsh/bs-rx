@@ -65,8 +65,19 @@ let mergeMap project stream = stream |> _mergeMap project
 let mergeMapArray project stream = stream |> _mergeMapArray project
 let mergeMapPromise project stream = stream |> _mergeMapPromise project
 
+(* OPERATOR: reduce *)
+external _reduce : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = "reduce"
+  [@@bs.module "rxjs/operators"]
 
-(* OPERATOR: _startWith *)
+let reduce accumulator seed stream = stream |> _reduce accumulator seed
+
+(* OPERATOR: scan *)
+external _scan : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = "scan"
+  [@@bs.module "rxjs/operators"]
+
+let scan accumulator seed stream = stream |> _scan accumulator seed
+
+(* OPERATOR: startWith *)
 
 
 (* OPERATOR: switchMap *)

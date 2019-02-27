@@ -49,6 +49,14 @@ function mergeMapPromise(project, stream) {
   return Curry._1(Operators.mergeMap(Curry.__1(project)), stream);
 }
 
+function reduce(accumulator, seed, stream) {
+  return Curry._1(Operators.reduce(Curry.__3(accumulator), seed), stream);
+}
+
+function scan(accumulator, seed, stream) {
+  return Curry._1(Operators.scan(Curry.__3(accumulator), seed), stream);
+}
+
 function switchMap(project, stream) {
   return Curry._1(Operators.switchMap(Curry.__1(project)), stream);
 }
@@ -93,6 +101,8 @@ export {
   mergeMap ,
   mergeMapArray ,
   mergeMapPromise ,
+  reduce ,
+  scan ,
   switchMap ,
   switchToArray ,
   switchToPromise ,
