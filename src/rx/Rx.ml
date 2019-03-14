@@ -30,6 +30,10 @@ external subscribeObs : 'a observable -> 'a observer -> subscription = "subscrib
 
 external unsubscribe : subscription -> unit = "" [@@bs.send]
 
+(* OPERATOR: concat *)
+external concat : 'a observable array -> 'a observable = ""
+  [@@bs.module "rxjs"] [@@bs.variadic]
+
 (* OPERATOR: defer *)
 external _defer : (unit -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "defer"
   [@@bs.module "rxjs"]
@@ -44,6 +48,7 @@ let defer factory stream = stream |> _defer factory
 let deferPromise factory stream = stream |> _deferPromise factory
 let deferArray factory stream = stream |> _deferArray factory
 
+(* OPERATOR: empty *)
 external empty : 'a observable = "EMPTY"
   [@@bs.module "rxjs"]
 
@@ -51,6 +56,7 @@ external empty : 'a observable = "EMPTY"
 external merge : 'a observable array -> 'a observable = ""
   [@@bs.module "rxjs"] [@@bs.variadic]
 
+(* OPERATOR: never *)
 external never : 'a observable = "NEVER"
   [@@bs.module "rxjs"]
 
