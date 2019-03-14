@@ -27,6 +27,8 @@ type data = [ `Int of int  | `Str of string ]
 let stream11 : data observable = map (fun x -> `Int x) stream1
 let stream22 : data observable = stream2 |> map (fun x -> `Str x)
 
+let combined = combineLatest2 stream1 stream2
+
 let merged2 = merge [| stream1; empty; |]
 
 let merged = merge [| stream11; stream22 |]

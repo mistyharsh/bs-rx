@@ -52,6 +52,8 @@ var stream22 = Operators$BsMarblejs.map((function (x) {
               ];
       }), stream2);
 
+var combined = Rxjs.combineLatest(stream1, stream2);
+
 var merged2 = Rxjs.merge(stream1, Rxjs.EMPTY);
 
 var merged = Operators$BsMarblejs.map((function (x) {
@@ -103,6 +105,7 @@ export {
   opr1 ,
   stream11 ,
   stream22 ,
+  combined ,
   merged2 ,
   merged ,
   y1 ,
