@@ -6,6 +6,9 @@ external _catchError : ('err -> 'a observable -> 'b observable [@bs.uncurry]) ->
 
 let catchError selector stream = stream |> _catchError selector
 
+(* OPERATOR: combineAll *)
+external combineAll : unit -> ('a observable, 'a array) operator = "combineAll" [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: debounceTime *)
 external _debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = "debounceTime"
   [@@bs.module "rxjs/operators"]

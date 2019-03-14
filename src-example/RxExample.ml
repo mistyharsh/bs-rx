@@ -60,6 +60,8 @@ let y1 = opr1 stream1
   |> elementAt 0 ()
   |> elementAt 100 ~default:10 ()
   |> scan (fun _acc nextVal _index -> nextVal) 10
+  |> map begin fun _x -> stream1 end
+  |> combineAll ()
 
 
 let y2 = stream1 |> mapTo 10
