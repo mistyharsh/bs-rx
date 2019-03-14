@@ -7,6 +7,10 @@ type scheduler
 
 type subscription
 
+(*
+  Operator is basically a function that takes an observable and translate into new observable
+  of possibly different type
+*)
 type ('a, 'b) operator = 'a observable -> 'b observable
 
 external next : 'a observer -> 'a -> unit = "" [@@bs.send]
