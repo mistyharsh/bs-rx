@@ -64,6 +64,8 @@ var merged = Operators$BsMarblejs.map((function (x) {
         }
       }), Rxjs.merge(stream11, stream22));
 
+var mergedAll = Curry._1(Operators.mergeAll(10), Rxjs.of(stream1));
+
 var y1 = Curry._1(Operators.combineAll(), Operators$BsMarblejs.map((function (_x) {
             return stream1;
           }), Operators$BsMarblejs.scan((function (_acc, nextVal, _index) {
@@ -110,6 +112,7 @@ export {
   combined ,
   merged2 ,
   merged ,
+  mergedAll ,
   y1 ,
   y2 ,
   

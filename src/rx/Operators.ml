@@ -53,8 +53,11 @@ let mapi project stream =  stream |> _mapi project
 external mapTo : 'b -> ('a, 'b) operator = "mapTo"
   [@@bs.module "rxjs/operators"]
 
-(* OPERATOR: mergeMap *)
+(* OPERATOR: mergeAll *)
+external mergeAll : ?concurrent:int -> unit -> ('a observable, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: mergeMap *)
 external _mergeMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "mergeMap"
   [@@bs.module "rxjs/operators"]
 

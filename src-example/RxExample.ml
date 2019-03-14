@@ -38,6 +38,8 @@ let merged = merge [| stream11; stream22 |]
         | `Str v -> int_of_string(v)
     end
 
+let mergedAll = off [| stream1 |] |> mergeAll ~concurrent:10 ()
+
 let y1 = opr1 stream1
   |> mapi (fun item index -> item + index + 4)
   |> map begin fun x -> x + 5 end
