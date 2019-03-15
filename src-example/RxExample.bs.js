@@ -52,7 +52,7 @@ var stream22 = Operators$BsMarblejs.map((function (x) {
               ];
       }), stream2);
 
-var combined = Rxjs.combineLatest(stream1, stream2);
+var combined = Curry._2(Rxjs.combineLatest, stream1, stream2);
 
 var merged2 = Rxjs.merge(stream1, Rxjs.EMPTY);
 
