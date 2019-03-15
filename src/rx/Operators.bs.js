@@ -2,7 +2,6 @@
 
 import * as Curry from "bs-platform/lib/es6/curry.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
-import * as Operator from "rxjs/operator";
 import * as Operators from "rxjs/operators";
 
 function catchError(selector, stream) {
@@ -74,19 +73,19 @@ function take(count, stream) {
 }
 
 function withLatestFrom2(stream, sourceStream) {
-  return Curry._1(Operator.withLatestFrom(stream), sourceStream);
+  return Curry._1(Operators.withLatestFrom(stream), sourceStream);
 }
 
 function withLatestFrom3(stream1, stream2, sourceStream) {
-  return Curry._1(Operator.withLatestFrom(stream1, stream2), sourceStream);
+  return Curry._1(Operators.withLatestFrom(stream1, stream2), sourceStream);
 }
 
 function withLatestFrom4(stream1, stream2, stream3, sourceStream) {
-  return Curry._1(Operator.withLatestFrom(stream1, stream2, stream3), sourceStream);
+  return Curry._1(Operators.withLatestFrom(stream1, stream2, stream3), sourceStream);
 }
 
 function withLatestFrom5(stream1, stream2, stream3, stream4, sourceStream) {
-  return Curry._1(Operator.withLatestFrom(stream1, stream2, stream3, stream4), sourceStream);
+  return Curry._1(Operators.withLatestFrom(stream1, stream2, stream3, stream4), sourceStream);
 }
 
 export {
@@ -113,4 +112,4 @@ export {
   withLatestFrom5 ,
   
 }
-/* rxjs/operator Not a pure module */
+/* rxjs/operators Not a pure module */

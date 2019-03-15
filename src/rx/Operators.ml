@@ -108,19 +108,19 @@ let take count stream = stream |> _take count
 
 (* OPERATOR: withLatestFrom *)
 external _withLatestFrom2 : 'b observable -> ('a, ('a * 'b)) operator = "withLatestFrom"
-  [@@bs.module "rxjs/operator"]
+  [@@bs.module "rxjs/operators"]
 
 external _withLatestFrom3 : 'b observable -> 'c observable -> ('a, ('a * 'b * 'c)) operator = "withLatestFrom"
-  [@@bs.module "rxjs/operator"]
+  [@@bs.module "rxjs/operators"]
 
 external _withLatestFrom4 :
   'b observable -> 'c observable -> 'd observable -> ('a, ('a * 'b * 'c * 'd)) operator = "withLatestFrom"
-  [@@bs.module "rxjs/operator"]
+  [@@bs.module "rxjs/operators"]
 
 external _withLatestFrom5 :
   'b observable -> 'c observable -> 'd observable -> 'e observable ->
   ('a, ('a * 'b * 'c * 'd * 'e)) operator = "withLatestFrom"
-  [@@bs.module "rxjs/operator"]
+  [@@bs.module "rxjs/operators"]
 
 let withLatestFrom2 stream sourceStream
   = sourceStream |> _withLatestFrom2 stream
