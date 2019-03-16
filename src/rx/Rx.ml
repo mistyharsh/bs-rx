@@ -66,6 +66,10 @@ let deferArray factory stream = stream |> _deferArray factory
 external empty : 'a observable = "EMPTY"
   [@@bs.module "rxjs"]
 
+(* OPERATOR: interval *)
+external interval : int -> 'a observable = "interval"
+  [@@bs.module "rxjs"]
+
 (* OPERATOR: merge *)
 external merge : 'a observable array -> 'a observable = ""
   [@@bs.module "rxjs"] [@@bs.variadic]
