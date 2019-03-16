@@ -67,7 +67,7 @@ external empty : 'a observable = "EMPTY"
   [@@bs.module "rxjs"]
 
 (* OPERATOR: interval *)
-external interval : int -> 'a observable = "interval"
+external interval : int -> int observable = "interval"
   [@@bs.module "rxjs"]
 
 (* OPERATOR: merge *)
@@ -82,6 +82,14 @@ external never : 'a observable = "NEVER"
 (* Note: No support for scheduler argument *)
 external off : 'a array -> 'a observable = "of"
   [@@bs.module "rxjs"] [@@bs.variadic]
+
+(* OPERATOR: timer *)
+external timer : int -> int -> int observable = "timer"
+  [@@bs.module "rxjs"]
+
+(* Not sure if this is the right data type *)
+external timerDated : Js.Date.t -> int -> int observable = "timer"
+  [@@bs.module "rxjs"]
 
 (* OPERATOR: zip *)
 external zip2 : ('a, 'b) tuple2 = "zip" [@@bs.module "rxjs"]
