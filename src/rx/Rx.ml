@@ -13,6 +13,19 @@ type subscription
 *)
 type ('a, 'b) operator = 'a observable -> 'b observable
 
+(* Observable.create(callback) *)
+external create : ('a observer -> unit) -> 'a observable = ""
+  [@@bs.val][@@bs.scope "Observable"] [@@bs.module "rxjs"]
+
+(* somObservable.subscribe(() => {}) *)
+external subscribe : 'a observable -> ('a -> unit) -> subscription = "" [@@bs.send]
+
+(* somObservable.subscribe({ next, error, complete }) *)
+external subscribeObs : 'a observable -> 'a observer -> subscription = "subscribe" [@@bs.send]
+
+external unsubscribe : subscription -> unit = "" [@@bs.send]
+
+(* Observer helper functions *)
 external next : 'a observer -> 'a -> unit = "" [@@bs.send]
 external error : 'a observer -> 'e -> unit = "" [@@bs.send]
 external complete : 'a observer -> unit = "" [@@bs.send]
@@ -31,18 +44,6 @@ external combineLatest3 : ('a, 'b, 'c) tuple3 = "combineLatest" [@@bs.module "rx
 external combineLatest4 : ('a, 'b, 'c, 'd) tuple4 = "combineLatest" [@@bs.module "rxjs"]
 external combineLatest5 : ('a, 'b, 'c, 'd, 'e) tuple5 = "combineLatest" [@@bs.module "rxjs"]
 external combineLatest6 : ('a, 'b, 'c, 'd, 'e, 'f) tuple6 = "combineLatest" [@@bs.module "rxjs"]
-
-(* Observable.create(callback) *)
-external create : ('a observer -> unit) -> 'a observable = ""
-  [@@bs.val][@@bs.scope "Observable"] [@@bs.module "rxjs"]
-
-(* somObservable.subscribe(() => {}) *)
-external subscribe : 'a observable -> ('a -> unit) -> subscription = "" [@@bs.send]
-
-(* somObservable.subscribe({ next, error, complete }) *)
-external subscribeObs : 'a observable -> 'a observer -> subscription = "subscribe" [@@bs.send]
-
-external unsubscribe : subscription -> unit = "" [@@bs.send]
 
 (* OPERATOR: concat *)
 external concat : 'a observable array -> 'a observable = ""
