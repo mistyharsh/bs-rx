@@ -21,7 +21,15 @@ external catchError : ('err -> 'a observable -> 'b observable [@bs.uncurry]) -> 
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: combineAll *)
-external combineAll : unit -> ('a observable, 'a array) operator = "" [@@bs.module "rxjs/operators"]
+external combineAll : unit -> ('a observable, 'a array) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: debounce *)
+external debounce : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external debouncePromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) -> ('a, 'a) operator = "debounce"
+  [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: debounceTime *)
 external debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = ""
