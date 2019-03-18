@@ -49,18 +49,14 @@ external concat : 'a observable array -> 'a observable = ""
   [@@bs.module "rxjs"] [@@bs.variadic]
 
 (* OPERATOR: defer *)
-external _defer : (unit -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "defer"
+external defer : (unit -> 'a observable [@bs.uncurry]) -> 'a observable = "defer"
   [@@bs.module "rxjs"]
 
-external _deferPromise : (unit -> 'b Js.Promise.t [@bs.uncurry]) -> ('a, 'b) operator = "defer"
+external deferPromise : (unit -> 'a Js.Promise.t [@bs.uncurry]) -> 'a observable = "defer"
   [@@bs.module "rxjs"]
 
-external _deferArray : (unit -> 'b array) -> ('a, 'b) operator = "defer"
+external deferArray : (unit -> 'a array) -> 'a observable = "defer"
   [@@bs.module "rxjs"]
-
-let defer factory stream = stream |> _defer factory
-let deferPromise factory stream = stream |> _deferPromise factory
-let deferArray factory stream = stream |> _deferArray factory
 
 (* OPERATOR: empty *)
 external empty : 'a observable = "EMPTY"
