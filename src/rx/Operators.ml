@@ -4,7 +4,12 @@ open Rx
 external buffer : 'a observable -> ('b, 'b array) operator = "buffer"
   [@@bs.module "rxjs/operators"]
 
-external bufferTime : int -> 'a observable -> ('b, 'b array) operator = "bufferTime"
+(* OPERATOR: bufferTime *)
+external bufferTime : int -> 'a observable -> ('a, 'a array) operator = "bufferTime"
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: bufferCount *)
+external bufferCount : int -> ?startBuffer:int -> unit -> ('a , 'a array) operator = "bufferCount"
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: catchError *)

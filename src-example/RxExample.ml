@@ -10,6 +10,9 @@ let subscription1 = subscribe stream1 begin
 
 let x = map (fun item -> item + 20) stream1
 
+let b1 = bufferCount 4 ~startBuffer:10 () stream1
+let b2 = bufferCount 4 () stream1
+
 
 external scheduler : scheduler = "" [@@bs.val]
 (* external observer1 : 'any observer = "" [@@bs.val]
@@ -56,7 +59,6 @@ let y1 = opr1 stream1
   |> withLatestFrom5 stream1 stream1 stream1 stream1
   |> mergeMap (fun _x -> stream1)
   |> mergeMapArray (fun _x -> [| 10; 20 |])
-  |> deferArray begin fun () -> [| 10; 20 |] end
   |> distinctUntilChanged ()
   |> distinctUntilChanged ~compare:(fun _x _y -> true) ()
   |> elementAt 0 ()
