@@ -12,6 +12,10 @@ external bufferTime : int -> 'a observable -> ('a, 'a array) operator = ""
 external bufferCount : int -> ?startBuffer:int -> unit -> ('a , 'a array) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: bufferWhen *)
+external bufferWhen : (unit -> 'b observable) -> ('a, 'a array) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: catchError *)
 external catchError : ('err -> 'a observable -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = ""
   [@@bs.module "rxjs/operators"]
