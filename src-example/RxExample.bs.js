@@ -5,7 +5,6 @@ import * as Curry from "bs-platform/lib/es6/curry.js";
 import * as Caml_format from "bs-platform/lib/es6/caml_format.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
 import * as Operators from "rxjs/operators";
-import * as Operators$BsMarblejs from "../src/rx/Operators.bs.js";
 
 var stream1 = Rxjs.Observable.create((function (obs) {
         obs.next(20);
@@ -21,80 +20,90 @@ var subscription1 = stream1.subscribe((function (myVal) {
         return /* () */0;
       }));
 
-var x = Operators$BsMarblejs.map((function (item) {
-        return item + 20 | 0;
-      }), stream1);
+var x = Curry._1(Operators.map((function (item) {
+            return item + 20 | 0;
+          })), stream1);
 
 var b1 = Curry._1(Operators.bufferCount(4, 10), stream1);
 
 var b2 = Curry._1(Operators.bufferCount(4, undefined), stream1);
 
-function mapped(param) {
-  return Operators$BsMarblejs.map((function (item) {
-                return item + 4 | 0;
-              }), param);
-}
+var s1 = Curry._1(Operators.scan((function (_acc, nextVal, _index) {
+            return nextVal;
+          }), 10), stream1);
 
-function opr1(param) {
-  return Operators$BsMarblejs.map((function (item) {
-                return item + 5 | 0;
-              }), param);
-}
+var wLF1 = Curry._1(Operators.withLatestFrom(stream1), stream2);
 
-var stream11 = Operators$BsMarblejs.map((function (x) {
-        return /* `Int */[
-                3654863,
-                x
-              ];
-      }), stream1);
+var mapped = Operators.map((function (item) {
+        return item + 4 | 0;
+      }));
 
-var stream22 = Operators$BsMarblejs.map((function (x) {
-        return /* `Str */[
-                4153489,
-                x
-              ];
-      }), stream2);
+var opr1 = Operators.map((function (item) {
+        return item + 5 | 0;
+      }));
+
+Operators.catchError((function (_err, _caught) {
+        return stream1;
+      }));
+
+var stream11 = Curry._1(Operators.map((function (x) {
+            return /* `Int */[
+                    3654863,
+                    x
+                  ];
+          })), stream1);
+
+var stream22 = Curry._1(Operators.map((function (x) {
+            return /* `Str */[
+                    4153489,
+                    x
+                  ];
+          })), stream2);
 
 var combined = Curry._2(Rxjs.combineLatest, stream1, stream2);
 
 var merged2 = Rxjs.merge(stream1, Rxjs.EMPTY);
 
-var merged = Operators$BsMarblejs.map((function (x) {
-        if (x[0] >= 4153489) {
-          return Caml_format.caml_int_of_string(x[1]);
-        } else {
-          return x[1];
-        }
-      }), Rxjs.merge(stream11, stream22));
+var merged = Curry._1(Operators.map((function (x) {
+            if (x[0] >= 4153489) {
+              return Caml_format.caml_int_of_string(x[1]);
+            } else {
+              return x[1];
+            }
+          })), Rxjs.merge(stream11, stream22));
 
 var mergedAll = Curry._1(Operators.mergeAll(10), Rxjs.of(stream1));
 
-var y1 = Curry._1(Operators.combineAll(), Operators$BsMarblejs.map((function (_x) {
-            return stream1;
-          }), Operators$BsMarblejs.scan((function (_acc, nextVal, _index) {
-                return nextVal;
-              }), 10, Operators$BsMarblejs.elementAt(100, 10, /* () */0, Operators$BsMarblejs.elementAt(0, undefined, /* () */0, Operators$BsMarblejs.distinctUntilChanged((function (_x, _y) {
-                            return true;
-                          }), /* () */0, Operators$BsMarblejs.distinctUntilChanged(undefined, /* () */0, Operators$BsMarblejs.mergeMapArray((function (_x) {
-                                    return /* array */[
-                                            10,
-                                            20
-                                          ];
-                                  }), Operators$BsMarblejs.mergeMap((function (_x) {
-                                        return stream1;
-                                      }), Operators$BsMarblejs.withLatestFrom5(stream1, stream1, stream1, stream1, Operators$BsMarblejs.withLatestFrom4(stream1, stream1, stream1, Operators$BsMarblejs.withLatestFrom3(stream1, stream1, Operators$BsMarblejs.withLatestFrom2(stream1, Operators$BsMarblejs.take(100, Operators$BsMarblejs.catchError((function (_err, _caught) {
-                                                                return stream1;
-                                                              }), Operators$BsMarblejs.debounceTime(100, undefined, /* () */0, Operators$BsMarblejs.debounceTime(1000, Caml_option.some(scheduler), /* () */0, Operators$BsMarblejs.filteri((function (_x, _y) {
-                                                                            return false;
-                                                                          }), Operators$BsMarblejs.switchToArray((function (param) {
-                                                                                return /* array */[10];
-                                                                              }), Operators$BsMarblejs.switchMap((function (_x) {
-                                                                                    return stream1;
-                                                                                  }), Operators$BsMarblejs.map((function (x) {
-                                                                                        return x + 5 | 0;
-                                                                                      }), Operators$BsMarblejs.mapi((function (item, index) {
-                                                                                            return (item + index | 0) + 4 | 0;
-                                                                                          }), opr1(stream1)))))))))))))))))))))));
+var partial_arg = (function (_x, _y) {
+    return true;
+  });
+
+var y1 = Curry._1(Operators.combineAll(), Curry._1(Operators.map((function (_x) {
+                return stream1;
+              })), Curry._1(Operators.scan((function (_acc, nextVal, _index) {
+                    return nextVal;
+                  }), 10), Curry._1(Operators.elementAt(100, 10), Curry._1(Operators.elementAt(0, undefined), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get(Curry.__2(partial_arg))), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get((function (param, param$1) {
+                                        return Curry._2(undefined, param, param$1);
+                                      }))), Curry._1(Operators.mergeMap((function (_x) {
+                                        return /* array */[
+                                                10,
+                                                20
+                                              ];
+                                      })), Curry._1(Operators.mergeMap((function (_x) {
+                                            return stream1;
+                                          })), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1), Curry._1(Operators.withLatestFrom(stream1), Curry._1(Operators.take(100), Curry._1(Operators.catchError((function (_err, _caught) {
+                                                                    return stream1;
+                                                                  })), Curry._1(Operators.debounceTime(100, undefined), Curry._1(Operators.debounceTime(1000, scheduler), Curry._1(Operators.filter((function (_x, _y) {
+                                                                                return false;
+                                                                              })), Curry._1(Operators.switchMap((function (param) {
+                                                                                    return /* array */[10];
+                                                                                  })), Curry._1(Operators.switchMap((function (_x) {
+                                                                                        return stream1;
+                                                                                      })), Curry._1(Operators.map((function (x) {
+                                                                                            return x + 5 | 0;
+                                                                                          })), Curry._1(Operators.map((function (item, index) {
+                                                                                                return (item + index | 0) + 4 | 0;
+                                                                                              })), Curry._1(opr1, stream1)))))))))))))))))))))));
 
 var y2 = Curry._1(Operators.mapTo(10), stream1);
 
@@ -105,6 +114,8 @@ export {
   x ,
   b1 ,
   b2 ,
+  s1 ,
+  wLF1 ,
   mapped ,
   opr1 ,
   stream11 ,

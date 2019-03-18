@@ -13,12 +13,16 @@ let x = map (fun item -> item + 20) stream1
 let b1 = bufferCount 4 ~startBuffer:10 () stream1
 let b2 = bufferCount 4 () stream1
 
+let s1 = scan (fun _acc nextVal _index -> nextVal) 10 stream1
+
+let wLF1 = withLatestFrom2 stream1 stream2
 
 external scheduler : scheduler = "" [@@bs.val]
 (* external observer1 : 'any observer = "" [@@bs.val]
 let subscription2 = subscribeObs stream1 observer1 *)
 
 (* let _ = unsubscribe subscription1 *)
+
 
 let mapped = map (fun item -> item + 4)
 
