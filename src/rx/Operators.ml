@@ -1,5 +1,12 @@
 open Rx
 
+(* OPERATOR: buffer *)
+external buffer : 'a observable -> ('b, 'b array) operator = "buffer"
+  [@@bs.module "rxjs/operators"]
+
+external bufferTime : int -> 'a observable -> ('b, 'b array) operator = "bufferTime"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: catchError *)
 external _catchError : ('err -> 'a observable -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "catchError"
   [@@bs.module "rxjs/operators"]
