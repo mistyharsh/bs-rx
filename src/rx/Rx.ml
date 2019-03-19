@@ -31,23 +31,32 @@ external error : 'a observer -> 'e -> unit = "" [@@bs.send]
 external complete : 'a observer -> unit = "" [@@bs.send]
 
 (* 2-tuple observable and so on *)
+(* Note: You cannot have a tuple of size 1 *)
 type ('a, 'b) tuple2 = ('a * 'b) observable
 type ('a, 'b, 'c ) tuple3 = ('a * 'b * 'c) observable
 type ('a, 'b, 'c, 'd ) tuple4 = ('a * 'b * 'c) observable
 type ('a, 'b, 'c, 'd, 'e) tuple5 = ('a * 'b * 'c * 'd * 'e) observable
 type ('a, 'b, 'c, 'd, 'e, 'f) tuple6 = ('a * 'b * 'c * 'd * 'e * 'f) observable
 
-type ('a, 'b) chain2 = 'a observable -> 'b observable
-type ('a, 'b, 'c ) chain3 = ('a * 'b * 'c) observable
-type ('a, 'b, 'c, 'd ) chain4 = ('a * 'b * 'c) observable
-type ('a, 'b, 'c, 'd, 'e) chain5 = ('a * 'b * 'c * 'd * 'e) observable
-type ('a, 'b, 'c, 'd, 'e, 'f) chain6 = ('a * 'b * 'c * 'd * 'e * 'f) observable
+type ('a, 'b) t2 =
+  'a observable -> 'b observable
+    -> ('a, 'b) tuple2
 
-type ('a, 'b) t2 = ('a, 'b) chain2 -> ('a, 'b) tuple2
-type ('a, 'b, 'c ) t3 = ('a, 'b, 'c ) chain3 -> ('a, 'b, 'c ) tuple3
-type ('a, 'b, 'c, 'd ) t4 =  ('a, 'b, 'c, 'd) chain4 -> ('a, 'b, 'c, 'd ) tuple4
-type ('a, 'b, 'c, 'd, 'e) t5 = ('a, 'b, 'c, 'd, 'e ) chain5 -> ('a, 'b, 'c, 'd, 'e) tuple5
-type ('a, 'b, 'c, 'd, 'e, 'f) t6 = ('a, 'b, 'c, 'd, 'e, 'f) chain6 -> ('a, 'b, 'c, 'd, 'e, 'f) tuple6
+type ('a, 'b, 'c ) t3 =
+  'a observable -> 'b observable -> 'c observable
+    -> ('a, 'b, 'c ) tuple3
+
+type ('a, 'b, 'c, 'd ) t4 =
+  'a observable -> 'b observable -> 'c observable -> 'd observable
+    -> ('a, 'b, 'c, 'd ) tuple4
+
+type ('a, 'b, 'c, 'd, 'e) t5 =
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable
+    -> ('a, 'b, 'c, 'd, 'e) tuple5
+
+type ('a, 'b, 'c, 'd, 'e, 'f) t6 =
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> 'f observable
+    -> ('a, 'b, 'c, 'd, 'e, 'f) tuple6
 
 (* OPERATOR: combineLatest *)
 external combineLatest2 : ('a, 'b) t2 = "combineLatest" [@@bs.module "rxjs"]
@@ -73,6 +82,14 @@ external deferArray : (unit -> 'a array) -> 'a observable = "defer"
 (* OPERATOR: empty *)
 external empty : 'a observable = "EMPTY"
   [@@bs.module "rxjs"]
+
+(* OPERATOR: forkJoin *)
+(* No support for promise or arrays *)
+external forkJoin2 : ('a, 'b) t2 = "forkJoin" [@@bs.module "rxjs"]
+external forkJoin3 : ('a, 'b, 'c) t3 = "forkJoin" [@@bs.module "rxjs"]
+external forkJoin4 : ('a, 'b, 'c, 'd) t4 = "forkJoin" [@@bs.module "rxjs"]
+external forkJoin5 : ('a, 'b, 'c, 'd, 'e) t5 = "forkJoin" [@@bs.module "rxjs"]
+external forkJoin6 : ('a, 'b, 'c, 'd, 'e, 'f) t6 = "forkJoin" [@@bs.module "rxjs"]
 
 (* OPERATOR: interval *)
 external interval : int -> int observable = "interval"
