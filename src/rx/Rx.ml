@@ -91,6 +91,11 @@ external forkJoin4 : ('a, 'b, 'c, 'd) t4 = "forkJoin" [@@bs.module "rxjs"]
 external forkJoin5 : ('a, 'b, 'c, 'd, 'e) t5 = "forkJoin" [@@bs.module "rxjs"]
 external forkJoin6 : ('a, 'b, 'c, 'd, 'e, 'f) t6 = "forkJoin" [@@bs.module "rxjs"]
 
+(* OPERATOR: from *)
+(* Note: No support for iterables and schedulers *)
+external fromArray : 'a array -> 'a observable = "from" [@@bs.module "rxjs"]
+external fromPromise : 'a Js.Promise.t -> 'a observable = "from" [@@bs.module "rxjs"]
+
 (* OPERATOR: interval *)
 external interval : int -> int observable = "interval"
   [@@bs.module "rxjs"]
