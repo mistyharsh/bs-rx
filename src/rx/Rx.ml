@@ -108,6 +108,10 @@ external never : 'a observable = "NEVER"
 external off : 'a array -> 'a observable = "of"
   [@@bs.module "rxjs"] [@@bs.variadic]
 
+(* OPERATOR: race *)
+external race : 'a observable array -> 'a observable = ""
+  [@@bs.module "rxjs"] [@@bs.variadic]
+
 (* OPERATOR: timer *)
 external timer : int -> int -> int observable = "timer"
   [@@bs.module "rxjs"]
