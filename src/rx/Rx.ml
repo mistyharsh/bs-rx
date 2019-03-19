@@ -30,20 +30,31 @@ external next : 'a observer -> 'a -> unit = "" [@@bs.send]
 external error : 'a observer -> 'e -> unit = "" [@@bs.send]
 external complete : 'a observer -> unit = "" [@@bs.send]
 
-type ('a, 'b) tuple2 = 'a observable -> 'b observable -> ('a * 'b) observable
-type ('a, 'b, 'c ) tuple3 ='a observable -> 'b observable -> 'c observable -> ('a * 'b * 'c) observable
-type ('a, 'b, 'c, 'd ) tuple4 = 'a observable -> 'b observable -> 'c observable -> 'd observable -> ('a * 'b * 'c) observable
-type ('a, 'b, 'c, 'd, 'e) tuple5 ='a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable
-  -> ('a * 'b * 'c * 'd * 'e) observable
-type ('a, 'b, 'c, 'd, 'e, 'f) tuple6 ='a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> 'f observable
-  -> ('a * 'b * 'c * 'd * 'e * 'f) observable
+(* 2-tuple observable and so on *)
+type ('a, 'b) tuple2 = ('a * 'b) observable
+type ('a, 'b, 'c ) tuple3 = ('a * 'b * 'c) observable
+type ('a, 'b, 'c, 'd ) tuple4 = ('a * 'b * 'c) observable
+type ('a, 'b, 'c, 'd, 'e) tuple5 = ('a * 'b * 'c * 'd * 'e) observable
+type ('a, 'b, 'c, 'd, 'e, 'f) tuple6 = ('a * 'b * 'c * 'd * 'e * 'f) observable
+
+type ('a, 'b) chain2 = 'a observable -> 'b observable
+type ('a, 'b, 'c ) chain3 = ('a * 'b * 'c) observable
+type ('a, 'b, 'c, 'd ) chain4 = ('a * 'b * 'c) observable
+type ('a, 'b, 'c, 'd, 'e) chain5 = ('a * 'b * 'c * 'd * 'e) observable
+type ('a, 'b, 'c, 'd, 'e, 'f) chain6 = ('a * 'b * 'c * 'd * 'e * 'f) observable
+
+type ('a, 'b) t2 = ('a, 'b) chain2 -> ('a, 'b) tuple2
+type ('a, 'b, 'c ) t3 = ('a, 'b, 'c ) chain3 -> ('a, 'b, 'c ) tuple3
+type ('a, 'b, 'c, 'd ) t4 =  ('a, 'b, 'c, 'd) chain4 -> ('a, 'b, 'c, 'd ) tuple4
+type ('a, 'b, 'c, 'd, 'e) t5 = ('a, 'b, 'c, 'd, 'e ) chain5 -> ('a, 'b, 'c, 'd, 'e) tuple5
+type ('a, 'b, 'c, 'd, 'e, 'f) t6 = ('a, 'b, 'c, 'd, 'e, 'f) chain6 -> ('a, 'b, 'c, 'd, 'e, 'f) tuple6
 
 (* OPERATOR: combineLatest *)
-external combineLatest2 : ('a, 'b) tuple2 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest3 : ('a, 'b, 'c) tuple3 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest4 : ('a, 'b, 'c, 'd) tuple4 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest5 : ('a, 'b, 'c, 'd, 'e) tuple5 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest6 : ('a, 'b, 'c, 'd, 'e, 'f) tuple6 = "combineLatest" [@@bs.module "rxjs"]
+external combineLatest2 : ('a, 'b) t2 = "combineLatest" [@@bs.module "rxjs"]
+external combineLatest3 : ('a, 'b, 'c) t3 = "combineLatest" [@@bs.module "rxjs"]
+external combineLatest4 : ('a, 'b, 'c, 'd) t4 = "combineLatest" [@@bs.module "rxjs"]
+external combineLatest5 : ('a, 'b, 'c, 'd, 'e) t5 = "combineLatest" [@@bs.module "rxjs"]
+external combineLatest6 : ('a, 'b, 'c, 'd, 'e, 'f) t6 = "combineLatest" [@@bs.module "rxjs"]
 
 (* OPERATOR: concat *)
 external concat : 'a observable array -> 'a observable = ""
@@ -89,8 +100,8 @@ external timerDated : Js.Date.t -> int -> int observable = "timer"
   [@@bs.module "rxjs"]
 
 (* OPERATOR: zip *)
-external zip2 : ('a, 'b) tuple2 = "zip" [@@bs.module "rxjs"]
-external zip3 : ('a, 'b, 'c) tuple3 = "zip" [@@bs.module "rxjs"]
-external zip4 : ('a, 'b, 'c, 'd) tuple4 = "zip" [@@bs.module "rxjs"]
-external zip5 : ('a, 'b, 'c, 'd, 'e) tuple5 = "zip" [@@bs.module "rxjs"]
-external zip6 : ('a, 'b, 'c, 'd, 'e, 'f) tuple6 = "combineLatest" [@@bs.module "rxjs"]
+external zip2 : ('a, 'b) t2 = "zip" [@@bs.module "rxjs"]
+external zip3 : ('a, 'b, 'c) t3 = "zip" [@@bs.module "rxjs"]
+external zip4 : ('a, 'b, 'c, 'd) t4 = "zip" [@@bs.module "rxjs"]
+external zip5 : ('a, 'b, 'c, 'd, 'e) t5 = "zip" [@@bs.module "rxjs"]
+external zip6 : ('a, 'b, 'c, 'd, 'e, 'f) t6 = "combineLatest" [@@bs.module "rxjs"]

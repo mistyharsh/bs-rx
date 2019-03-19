@@ -102,14 +102,13 @@ external take : int -> ('a, 'a) operator = "take"
 external withLatestFrom2 : 'b observable -> ('a, ('a * 'b)) operator = "withLatestFrom"
   [@@bs.module "rxjs/operators"]
 
-external withLatestFrom3 : 'b observable -> 'c observable -> ('a, ('a * 'b * 'c)) operator = "withLatestFrom"
+external withLatestFrom3 : ('b, 'c) chain2 -> ('a, ('a * 'b * 'c)) operator = "withLatestFrom"
   [@@bs.module "rxjs/operators"]
 
 external withLatestFrom4 :
-  'b observable -> 'c observable -> 'd observable -> ('a, ('a * 'b * 'c * 'd)) operator = "withLatestFrom"
+  ('b, 'c, 'd) chain3 -> ('a, ('a * 'b * 'c * 'd)) operator = "withLatestFrom"
   [@@bs.module "rxjs/operators"]
 
 external withLatestFrom5 :
-  'b observable -> 'c observable -> 'd observable -> 'e observable ->
-  ('a, ('a * 'b * 'c * 'd * 'e)) operator = "withLatestFrom"
+  ('b, 'c, 'd, 'e) chain4 -> ('a, ('a * 'b * 'c * 'd * 'e)) operator = "withLatestFrom"
   [@@bs.module "rxjs/operators"]
