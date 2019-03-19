@@ -112,6 +112,10 @@ external off : 'a array -> 'a observable = "of"
 external race : 'a observable array -> 'a observable = ""
   [@@bs.module "rxjs"] [@@bs.variadic]
 
+(* OPERATOR: range *)
+external range : int -> ?count:int -> unit -> ?scheduler:scheduler -> unit -> int observable = ""
+  [@@bs.module "rxjs"]
+
 (* OPERATOR: timer *)
 external timer : int -> int -> int observable = "timer"
   [@@bs.module "rxjs"]

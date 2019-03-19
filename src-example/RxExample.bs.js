@@ -107,6 +107,10 @@ var y1 = Curry._1(Operators.combineAll(), Curry._1(Operators.map((function (_x) 
 
 var y2 = Curry._1(Operators.mapTo(10), stream1);
 
+var range1 = Rxjs.range(1, undefined, undefined);
+
+var range2 = Rxjs.range(0, 10, undefined);
+
 export {
   stream1 ,
   stream2 ,
@@ -126,6 +130,8 @@ export {
   mergedAll ,
   y1 ,
   y2 ,
+  range1 ,
+  range2 ,
   
 }
 /* stream1 Not a pure module */
