@@ -73,6 +73,9 @@ let y1 = opr1 stream1
   |> takeWhile (fun _x _i -> true) ()
   |> combineAll ()
   |> takeUntil stream1
+  |> repeat ~count:10
+  |> repeat
+  |> tap (fun x -> ignore(x))
 
 let y2 = stream1 |> mapTo 10
 

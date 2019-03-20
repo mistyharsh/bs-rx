@@ -80,6 +80,12 @@ external mergeMapPromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) op
 external reduce : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: repeat *)
+external _repeat : ?count:int -> unit -> ('a, 'a) operator = "repeat"
+  [@@bs.module "rxjs/operators"]
+
+let repeat ?(count = -1) stream = _repeat ~count () stream
+
 (* OPERATOR: scan *)
 external scan : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
   [@@bs.module "rxjs/operators"]
@@ -124,6 +130,13 @@ external takeUntil : 'any observable -> ('a, 'a) operator = ""
 
 (* OPERATOR: takeWhite *)
 external takeWhile : ('a -> int -> bool [@bs.uncurry]) -> ?inclusive:bool -> unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: tap *)
+external tap : ('a -> unit) -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external tapO : ('a observer) -> ('a, 'a) operator = "tap"
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: withLatestFrom *)
