@@ -13,6 +13,28 @@ type subscription
 *)
 type ('a, 'b) operator = 'a observable -> 'b observable
 
+
+(* https://reasonml.chat/t/what-is-the-proper-type-for-node-callback/1326 *)
+(* https://reasonml.chat/t/what-is-the-proper-type-for-node-callback/1326 *)
+type 'a nodeCallback = Js.Exn.t Js.nullable -> 'a Js.nullable -> unit [@bs]
+
+(* OPERATOR: bindNodeCallback *)
+external bindNodeCallback1 : ('a -> 'b nodeCallback -> unit [@bs.uncurry])
+  -> ('a -> 'b observable [@bs]) = "bindNodeCallback"
+  [@@bs.module "rxjs"]
+
+external bindNodeCallback2 : ('a -> 'b -> 'c nodeCallback -> unit [@bs.uncurry])
+  -> ('a -> 'b -> 'c observable [@bs]) = "bindNodeCallback"
+  [@@bs.module "rxjs"]
+
+external bindNodeCallback3 : ('a -> 'b -> 'c -> 'd nodeCallback -> unit [@bs.uncurry])
+  -> ('a -> 'b -> 'c -> 'd observable [@bs]) = "bindNodeCallback"
+  [@@bs.module "rxjs"]
+
+external bindNodeCallback4 : ('a -> 'b -> 'c -> 'd -> 'e nodeCallback -> unit [@bs.uncurry])
+  -> ('a -> 'b -> 'c -> 'd -> 'e observable [@bs]) = "bindNodeCallback"
+  [@@bs.module "rxjs"]
+
 (* Observable.create(callback) *)
 external create : ('a observer -> unit) -> 'a observable = ""
   [@@bs.val][@@bs.scope "Observable"] [@@bs.module "rxjs"]
