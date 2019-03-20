@@ -78,34 +78,34 @@ var partial_arg = (function (_x, _y) {
     return true;
   });
 
-var y1 = Curry._1(Operators.combineAll(), Curry._1(Operators.takeWhile((function (_x, _i) {
-                return true;
-              }), undefined), Curry._1(Operators.takeLast(5), Curry._1(Operators.map((function (_x) {
-                        return stream1;
-                      })), Curry._1(Operators.scan((function (_acc, nextVal, _index) {
-                            return nextVal;
-                          }), 10), Curry._1(Operators.elementAt(100, 10), Curry._1(Operators.elementAt(0, undefined), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get(Curry.__2(partial_arg))), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get((function (param, param$1) {
-                                                return Curry._2(undefined, param, param$1);
-                                              }))), Curry._1(Operators.mergeMap((function (_x) {
-                                                return /* array */[
-                                                        10,
-                                                        20
-                                                      ];
-                                              })), Curry._1(Operators.mergeMap((function (_x) {
-                                                    return stream1;
-                                                  })), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1), Curry._1(Operators.withLatestFrom(stream1), Curry._1(Operators.take(100), Curry._1(Operators.catchError((function (_err, _caught) {
-                                                                            return stream1;
-                                                                          })), Curry._1(Operators.debounceTime(100, undefined), Curry._1(Operators.debounceTime(1000, scheduler), Curry._1(Operators.filter((function (_x, _y) {
-                                                                                        return false;
-                                                                                      })), Curry._1(Operators.switchMap((function (param) {
-                                                                                            return /* array */[10];
-                                                                                          })), Curry._1(Operators.switchMap((function (_x) {
-                                                                                                return stream1;
-                                                                                              })), Curry._1(Operators.map((function (x) {
-                                                                                                    return x + 5 | 0;
-                                                                                                  })), Curry._1(Operators.map((function (item, index) {
-                                                                                                        return (item + index | 0) + 4 | 0;
-                                                                                                      })), Curry._1(opr1, stream1)))))))))))))))))))))))));
+var y1 = Curry._1(Operators.takeUntil(stream1), Curry._1(Operators.combineAll(), Curry._1(Operators.takeWhile((function (_x, _i) {
+                    return true;
+                  }), undefined), Curry._1(Operators.takeLast(5), Curry._1(Operators.map((function (_x) {
+                            return stream1;
+                          })), Curry._1(Operators.scan((function (_acc, nextVal, _index) {
+                                return nextVal;
+                              }), 10), Curry._1(Operators.elementAt(100, 10), Curry._1(Operators.elementAt(0, undefined), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get(Curry.__2(partial_arg))), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get((function (param, param$1) {
+                                                    return Curry._2(undefined, param, param$1);
+                                                  }))), Curry._1(Operators.mergeMap((function (_x) {
+                                                    return /* array */[
+                                                            10,
+                                                            20
+                                                          ];
+                                                  })), Curry._1(Operators.mergeMap((function (_x) {
+                                                        return stream1;
+                                                      })), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1), Curry._1(Operators.withLatestFrom(stream1), Curry._1(Operators.take(100), Curry._1(Operators.catchError((function (_err, _caught) {
+                                                                                return stream1;
+                                                                              })), Curry._1(Operators.debounceTime(100, undefined), Curry._1(Operators.debounceTime(1000, scheduler), Curry._1(Operators.filter((function (_x, _y) {
+                                                                                            return false;
+                                                                                          })), Curry._1(Operators.switchMap((function (param) {
+                                                                                                return /* array */[10];
+                                                                                              })), Curry._1(Operators.switchMap((function (_x) {
+                                                                                                    return stream1;
+                                                                                                  })), Curry._1(Operators.map((function (x) {
+                                                                                                        return x + 5 | 0;
+                                                                                                      })), Curry._1(Operators.map((function (item, index) {
+                                                                                                            return (item + index | 0) + 4 | 0;
+                                                                                                          })), Curry._1(opr1, stream1))))))))))))))))))))))))));
 
 var y2 = Curry._1(Operators.mapTo(10), stream1);
 

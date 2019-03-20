@@ -72,6 +72,7 @@ let y1 = opr1 stream1
   |> takeLast 5
   |> takeWhile (fun _x _i -> true) ()
   |> combineAll ()
+  |> takeUntil stream1
 
 
 let y2 = stream1 |> mapTo 10
