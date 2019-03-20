@@ -92,6 +92,14 @@ external skip : int -> ('a, 'a) operator = ""
 external skipLast : int -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: skipUntil *)
+external skipUntil : 'any observable -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: skipWhile *)
+external skipWhile : ('a -> int -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: switchMap *)
 external switchMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = ""
   [@@bs.module "rxjs/operators"]
