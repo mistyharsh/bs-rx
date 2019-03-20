@@ -98,6 +98,10 @@ external switchToPromise : ('a -> ('b, 'e) Js.promise [@bs.uncurry]) -> ('a, 'b)
 external take : int -> ('a, 'a) operator = "take"
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: takeLast *)
+external takeLast : int -> ('a, 'a) operator = "takeLast"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: withLatestFrom *)
 external withLatestFrom2 :
   'b observable
