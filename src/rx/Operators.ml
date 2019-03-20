@@ -43,6 +43,10 @@ external distinctUntilChanged : ?compare:('a -> 'a -> bool [@bs.uncurry]) -> uni
 external elementAt : int -> ?default:'a -> unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: every *)
+external every : ('a -> int -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: filter *)
 external filter : ('a -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
@@ -80,6 +84,10 @@ external mergeMapPromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) op
 external reduce : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: refCount *)
+external refCount : unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: repeat *)
 external _repeat : ?count:int -> unit -> ('a, 'a) operator = "repeat"
   [@@bs.module "rxjs/operators"]
@@ -104,6 +112,10 @@ external sampleTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator =
 
 (* OPERATOR: scan *)
 external scan : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: share *)
+external share : unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: skip *)
