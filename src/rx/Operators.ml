@@ -24,6 +24,20 @@ external catchError : ('err -> 'a observable -> 'b observable [@bs.uncurry]) -> 
 external combineAll : unit -> ('a observable, 'a array) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: concatAll *)
+external concatAll : unit -> ('a observable, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: concatMap *)
+external concatMap : ('a -> int -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external concatMapArray : ('a -> int -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = "concatMap"
+  [@@bs.module "rxjs/operators"]
+
+external concatMapPromise : ('a -> int -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) operator = "concatMap"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: debounce *)
 external debounce : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
@@ -61,13 +75,27 @@ external elementAt : int -> ?default:'a -> unit -> ('a, 'a) operator = ""
 external every : ('a -> int -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: exhaust *)
+(* No support for exhausting observable of array or promises *)
+external exhaust : unit -> ('a observable, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: exhaustMap *)
+external exhaustMap : ('a -> int -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external exhaustMapArray : ('a -> int -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = "exhaustMap"
+  [@@bs.module "rxjs/operators"]
+
+external exhaustMapPromise : ('a -> int -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) operator = "exhaustMap"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: filter *)
 external filter : ('a -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
 external filteri : ('a -> int -> bool [@bs.uncurry]) -> ('a, 'a) operator = "filter"
   [@@bs.module "rxjs/operators"]
-
 
 (* OPERATOR: map *)
 external map : ('a -> 'b [@bs.uncurry]) -> ('a, 'b) operator = ""
