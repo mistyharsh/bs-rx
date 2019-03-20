@@ -35,6 +35,20 @@ external debouncePromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) -> ('a, 'a) ope
 external debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: delay *)
+external delay : int -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external delayByDate : Js.Date.t -> ('a, 'a) operator = "delay"
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: delayWhen *)
+external delayWhen : ('a -> int -> 'any observable [@bs.uncurry]) -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external delayWhenLazy : ('a -> int -> 'any observable [@bs.uncurry]) -> 'any observable -> ('a, 'a) operator = "delayWhen"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: distinctUntilChanged *)
 external distinctUntilChanged : ?compare:('a -> 'a -> bool [@bs.uncurry]) -> unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
