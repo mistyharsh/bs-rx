@@ -69,6 +69,8 @@ let y1 = opr1 stream1
   |> elementAt 100 ~default:10 ()
   |> scan (fun _acc nextVal _index -> nextVal) 10
   |> map begin fun _x -> stream1 end
+  |> takeLast 5
+  |> takeWhile (fun _x _i -> true) ()
   |> combineAll ()
 
 

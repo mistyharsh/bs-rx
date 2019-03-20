@@ -102,6 +102,10 @@ external take : int -> ('a, 'a) operator = "take"
 external takeLast : int -> ('a, 'a) operator = "takeLast"
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: takeWhite *)
+external takeWhile : ('a -> int -> bool [@bs.uncurry]) -> ?inclusive:bool -> unit -> ('a, 'a) operator = "takeWhile"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: withLatestFrom *)
 external withLatestFrom2 :
   'b observable
