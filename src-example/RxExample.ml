@@ -76,6 +76,10 @@ let y1 = opr1 stream1
   |> repeat ~count:10
   |> repeat
   |> tap (fun x -> ignore(x))
+  |> retryWhen (fun _err -> stream1)
+  |> retry ~count:10 ()
+  |> sampleTime 100 ~scheduler:scheduler ()
+  |> sample stream1
 
 let y2 = stream1 |> mapTo 10
 

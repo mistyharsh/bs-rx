@@ -108,9 +108,11 @@ var eta = Operators$BsMarblejs.repeat(10, Curry._1(Operators.takeUntil(stream1),
                                                                                                                 return (item + index | 0) + 4 | 0;
                                                                                                               })), Curry._1(opr1, stream1)))))))))))))))))))))))))));
 
-var y1 = Curry._1(Operators.tap((function (x) {
-            return /* () */0;
-          })), Operators$BsMarblejs.repeat(undefined, eta));
+var y1 = Curry._1(Operators.sample(stream1), Curry._1(Operators.sampleTime(100, scheduler), Curry._1(Operators.retry(10), Curry._1(Operators.retryWhen((function (_err) {
+                        return stream1;
+                      })), Curry._1(Operators.tap((function (x) {
+                            return /* () */0;
+                          })), Operators$BsMarblejs.repeat(undefined, eta))))));
 
 var y2 = Curry._1(Operators.mapTo(10), stream1);
 

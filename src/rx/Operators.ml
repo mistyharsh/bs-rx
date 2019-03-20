@@ -86,6 +86,22 @@ external _repeat : ?count:int -> unit -> ('a, 'a) operator = "repeat"
 
 let repeat ?(count = -1) stream = _repeat ~count () stream
 
+(* OPERATOR: retry *)
+external retry : ?count:int -> unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: retryWhen *)
+external retryWhen : (Js.Exn.t observable -> 'b observable) -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: sample *)
+external sample : 'any observable -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: sampleTime *)
+external sampleTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: scan *)
 external scan : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
   [@@bs.module "rxjs/operators"]
