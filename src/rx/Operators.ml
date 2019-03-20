@@ -77,15 +77,23 @@ external mergeMapPromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) op
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: reduce *)
-external reduce : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = "reduce"
+external reduce : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: scan *)
-external scan : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = "scan"
+external scan : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: skip *)
+external skip : int -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: skipLast *)
+external skipLast : int -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: switchMap *)
-external switchMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
+external switchMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = ""
   [@@bs.module "rxjs/operators"]
 
 external switchToArray : ('a -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
@@ -95,19 +103,19 @@ external switchToPromise : ('a -> ('b, 'e) Js.promise [@bs.uncurry]) -> ('a, 'b)
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: take *)
-external take : int -> ('a, 'a) operator = "take"
+external take : int -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: takeLast *)
-external takeLast : int -> ('a, 'a) operator = "takeLast"
+external takeLast : int -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: takeUntil *)
-external takeUntil : 'any observable -> ('a, 'a) operator = "takeUntil"
+external takeUntil : 'any observable -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: takeWhite *)
-external takeWhile : ('a -> int -> bool [@bs.uncurry]) -> ?inclusive:bool -> unit -> ('a, 'a) operator = "takeWhile"
+external takeWhile : ('a -> int -> bool [@bs.uncurry]) -> ?inclusive:bool -> unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: withLatestFrom *)

@@ -74,7 +74,6 @@ let y1 = opr1 stream1
   |> combineAll ()
   |> takeUntil stream1
 
-
 let y2 = stream1 |> mapTo 10
 
 let range1 = range 1 () ()
