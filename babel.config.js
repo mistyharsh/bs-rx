@@ -1,0 +1,6 @@
+module.exports = {
+  presets: [],
+  plugins: [
+    "transform-es2015-modules-commonjs"
+  ],
+};

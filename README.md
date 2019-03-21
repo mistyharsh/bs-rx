@@ -1,5 +1,5 @@
-# bs-marblejs
-Marblejs bindings for ReasonML.
+# bs-marble
+ReasonML bindings for Rx.js and ecosystem libraries like Marble.js, etc.
 
 ## Missing manual - Bucklescript language extensions
 

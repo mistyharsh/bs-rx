@@ -4,12 +4,18 @@
     "sources":
     [
         {
-            "dir" : "src",
-            "subdirs" : true
+            "dir": "src",
+            "subdirs": true
+        },
+
+        {
+            "dir": "test",
+            "subdirs": true,
+            "type": "dev"
         },
         {
-            "dir" : "src-example",
-            "subdirs" : true,
+            "dir": "src-example",
+            "subdirs": true,
             "type": "dev"
         }
     ],
@@ -19,7 +25,7 @@
     },
     "suffix": ".bs.js",
     "bs-dependencies": [
-
+        "@glennsl/bs-jest"
     ],
     "warnings": {
         "error" : "+101"

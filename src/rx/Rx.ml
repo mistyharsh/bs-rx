@@ -9,12 +9,11 @@ type subscription
 
 (*
   Operator is basically a function that takes an observable and translate into new observable
-  of possibly different type
+  of possibly different type.
 *)
 type ('a, 'b) operator = 'a observable -> 'b observable
 
 
-(* https://reasonml.chat/t/what-is-the-proper-type-for-node-callback/1326 *)
 (* https://reasonml.chat/t/what-is-the-proper-type-for-node-callback/1326 *)
 type 'a nodeCallback = Js.Exn.t Js.nullable -> 'a Js.nullable -> unit [@bs]
 
@@ -81,11 +80,24 @@ type ('a, 'b, 'c, 'd, 'e, 'f) t6 =
     -> ('a, 'b, 'c, 'd, 'e, 'f) tuple6
 
 (* OPERATOR: combineLatest *)
-external combineLatest2 : ('a, 'b) t2 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest3 : ('a, 'b, 'c) t3 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest4 : ('a, 'b, 'c, 'd) t4 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest5 : ('a, 'b, 'c, 'd, 'e) t5 = "combineLatest" [@@bs.module "rxjs"]
-external combineLatest6 : ('a, 'b, 'c, 'd, 'e, 'f) t6 = "combineLatest" [@@bs.module "rxjs"]
+external combineLatest2 : 'a observable -> 'b observable -> ('a, 'b) tuple2
+  = "combineLatest" [@@bs.module "rxjs"]
+
+external combineLatest3 : 'a observable -> 'b observable -> 'c observable -> ('a, 'b, 'c ) tuple3
+  = "combineLatest" [@@bs.module "rxjs"]
+
+external combineLatest4 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> ('a, 'b, 'c, 'd ) tuple4
+  = "combineLatest" [@@bs.module "rxjs"]
+
+external combineLatest5 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> ('a, 'b, 'c, 'd, 'e) tuple5
+  = "combineLatest" [@@bs.module "rxjs"]
+
+external combineLatest6 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> 'f observable
+    -> ('a, 'b, 'c, 'd, 'e, 'f) tuple6
+  = "combineLatest" [@@bs.module "rxjs"]
 
 (* OPERATOR: concat *)
 external concat : 'a observable array -> 'a observable = ""
