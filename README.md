@@ -62,7 +62,7 @@ If you wish to easily bind to `window.history.length`, you can do this.
 external historyLen: int = "length" [@@bs.val][@@bs.scope "window", "history"]
 ```
 
-### Trick 2: Combine with `[@@bs.module]`
+#### Trick 2: Combine with `[@@bs.module]`
 You can also bind to a value from an external module.
 
 ```ocaml
@@ -79,13 +79,4 @@ external join: string array -> string = "" [@@bs.module "path"] [@@bs.variadic]
 let v = join [| "a"; "b"|]
 ```
 
-### Writing anonymous function
-```ocaml
-let stream1 = create (fun obs -> ignore(next obs 30))
-
-(* Or you can use begin and end block *)
-let subscription1 = subscribe stream1 begin
-    fun myVal -> ignore(myVal)
-  end
-
-```
+### `[@@bs.send]` - TODO

@@ -148,7 +148,70 @@ Jest.describe("Static operators", (function (param) {
                 Rxjs.EMPTY.subscribe(observer);
                 return /* () */0;
               }));
-        return Jest.testAsync("fromArray", undefined, test_fromArray);
+        Jest.testAsync("fromArray", undefined, test_fromArray);
+        Jest.testAsync("interval", 1000, (function (finish) {
+                var testObs = Curry._1(Operators.take(1), Rxjs.interval(100));
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toBe */2](0, Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        Jest.testAsync("merge", undefined, (function (finish) {
+                var testObs = Curry._1(Operators.reduce((function (acc, next, _i) {
+                            return /* :: */[
+                                    next,
+                                    acc
+                                  ];
+                          }), /* [] */0), Rxjs.merge(oneObs, twoObs));
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toEqual */12](/* :: */[
+                                        200,
+                                        /* :: */[
+                                          100,
+                                          /* :: */[
+                                            10,
+                                            /* [] */0
+                                          ]
+                                        ]
+                                      ], Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        Jest.testAsync("never", 1000, (function (finish) {
+                var observer = {
+                  next: (function (_val) {
+                      return Curry._1(finish, Jest.fail("Should expect no value"));
+                    }),
+                  error: (function (param) {
+                      return Curry._1(finish, Jest.pass);
+                    })
+                };
+                var testObs = Curry._1(Operators.timeout(100), Rxjs.NEVER);
+                testObs.subscribe(observer);
+                return /* () */0;
+              }));
+        Jest.testAsync("off", undefined, (function (finish) {
+                var testObs = Rxjs.of(10);
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toBe */2](10, Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        Jest.testAsync("race", undefined, (function (finish) {
+                var delayedObs = Curry._1(Operators.delay(100), oneObs);
+                var testObs = Curry._1(Operators.take(1), Rxjs.race(delayedObs, twoObs));
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toBe */2](100, Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        return Jest.testAsync("range", undefined, (function (finish) {
+                      var testObs = Rxjs.range(10, 1, undefined);
+                      testObs.subscribe((function (value) {
+                              return Curry._1(finish, Jest.Expect[/* toBe */2](10, Jest.Expect[/* expect */0](value)));
+                            }));
+                      return /* () */0;
+                    }));
       }));
 
 export {

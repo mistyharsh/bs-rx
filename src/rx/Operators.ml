@@ -209,6 +209,13 @@ external tap : ('a -> unit) -> ('a, 'a) operator = ""
 external tapO : ('a observer) -> ('a, 'a) operator = "tap"
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: timeout *)
+external timeout : int -> ('a, 'a) operator = "timeout"
+  [@@bs.module "rxjs/operators"]
+
+external timeoutByDate : Js.Date.t -> ('a, 'a) operator = "timeout"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: withLatestFrom *)
 external withLatestFrom2 :
   'b observable
