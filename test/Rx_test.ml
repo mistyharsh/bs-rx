@@ -29,7 +29,7 @@ let _ = describe "Expect" begin fun () ->
   end;
 end
 
-let _ = describe "combineLatest" begin fun () ->
+let _ = describe "Static operator: combineLatest" begin fun () ->
   let open Expect in
 
   testAsync "combineLatest2" begin fun finish ->
@@ -48,8 +48,40 @@ let _ = describe "combineLatest" begin fun () ->
 
 end
 
+let _ = describe "Static operator: forkJoin" begin fun () ->
+  let open Expect in
+
+  testAsync "forkJoin2" begin fun finish ->
+
+    let testObs = forkJoin2 oneObs twoObs in
+
+    subscribe testObs (fun value ->
+      expect value |> toEqual (10, 200) |> finish) |> ignore
+  end;
+
+  testAsync "forkJoin4" (fun finish ->
+
+    let testObs = forkJoin4 twoObs twoObs twoObs twoObs in
+
+    subscribe testObs (fun value ->
+      expect value |> toEqual (200, 200, 200, 200) |> finish) |> ignore
+  );
+
+end
+
+
+external makeObs : 'any -> 'a observer = "%identity"
+
 let _ = describe "Static operators" begin fun () ->
   let open Expect in
+
+  let test_fromArray finish =
+    let array = [| 10; 20 |] in
+    let testObs = array
+      |> fromArray |> reduce (fun acc next _i -> Array.append acc [| next |]) [||] in
+
+    subscribe testObs (fun value ->
+      Expect.expect value |> Expect.toEqual array |> finish) |> ignore in
 
   testAsync "concat" begin fun finish ->
     let testObs = concat [| oneObs; twoObs; oneObs |]
@@ -73,4 +105,17 @@ let _ = describe "Static operators" begin fun () ->
       expect value |> toBe 20 |> finish) |> ignore
   end;
 
+  testAsync "empty" begin fun finish ->
+
+    let observer = makeObs([%bs.obj {
+      next = (fun _val -> finish (fail "Should expect no value") |> ignore);
+      complete = (fun () -> ignore(finish pass))
+    }]) in
+
+    subscribeObs empty observer |> ignore
+  end;
+
+  testAsync "fromArray" test_fromArray
+
 end
+

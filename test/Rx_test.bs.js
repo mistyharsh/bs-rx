@@ -36,7 +36,7 @@ Jest.describe("Expect", (function (param) {
                     }));
       }));
 
-Jest.describe("combineLatest", (function (param) {
+Jest.describe("Static operator: combineLatest", (function (param) {
         Jest.testAsync("combineLatest2", undefined, (function (finish) {
                 var testObs = Rxjs.combineLatest(twoObs, oneObs);
                 testObs.subscribe((function (value) {
@@ -63,7 +63,45 @@ Jest.describe("combineLatest", (function (param) {
                     }));
       }));
 
+Jest.describe("Static operator: forkJoin", (function (param) {
+        Jest.testAsync("forkJoin2", undefined, (function (finish) {
+                var testObs = Rxjs.forkJoin(oneObs, twoObs);
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toEqual */12](/* tuple */[
+                                        10,
+                                        200
+                                      ], Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        return Jest.testAsync("forkJoin4", undefined, (function (finish) {
+                      var testObs = Rxjs.forkJoin(twoObs, twoObs, twoObs, twoObs);
+                      testObs.subscribe((function (value) {
+                              return Curry._1(finish, Jest.Expect[/* toEqual */12](/* tuple */[
+                                              200,
+                                              200,
+                                              200,
+                                              200
+                                            ], Jest.Expect[/* expect */0](value)));
+                            }));
+                      return /* () */0;
+                    }));
+      }));
+
 Jest.describe("Static operators", (function (param) {
+        var test_fromArray = function (finish) {
+          var array = /* array */[
+            10,
+            20
+          ];
+          var testObs = Curry._1(Operators.reduce((function (acc, next, _i) {
+                      return $$Array.append(acc, /* array */[next]);
+                    }), /* array */[]), Rxjs.from(array));
+          testObs.subscribe((function (value) {
+                  return Curry._1(finish, Jest.Expect[/* toEqual */12](array, Jest.Expect[/* expect */0](value)));
+                }));
+          return /* () */0;
+        };
         Jest.testAsync("concat", undefined, (function (finish) {
                 var testObs = Curry._1(Operators.reduce((function (acc, n, _i) {
                             return $$Array.append(acc, /* array */[n]);
@@ -87,15 +125,30 @@ Jest.describe("Static operators", (function (param) {
                       }));
                 return /* () */0;
               }));
-        return Jest.testAsync("deferArray", 100, (function (finish) {
-                      var testObs = Rxjs.defer((function (param) {
-                              return /* array */[20];
-                            }));
-                      testObs.subscribe((function (value) {
-                              return Curry._1(finish, Jest.Expect[/* toBe */2](20, Jest.Expect[/* expect */0](value)));
-                            }));
+        Jest.testAsync("deferArray", 100, (function (finish) {
+                var testObs = Rxjs.defer((function (param) {
+                        return /* array */[20];
+                      }));
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toBe */2](20, Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        Jest.testAsync("empty", undefined, (function (finish) {
+                var observer = {
+                  next: (function (_val) {
+                      Curry._1(finish, Jest.fail("Should expect no value"));
                       return /* () */0;
-                    }));
+                    }),
+                  complete: (function (param) {
+                      Curry._1(finish, Jest.pass);
+                      return /* () */0;
+                    })
+                };
+                Rxjs.EMPTY.subscribe(observer);
+                return /* () */0;
+              }));
+        return Jest.testAsync("fromArray", undefined, test_fromArray);
       }));
 
 export {

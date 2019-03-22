@@ -55,7 +55,7 @@ external complete : 'a observer -> unit = "" [@@bs.send]
 (* Note: You cannot have a tuple of size 1 *)
 type ('a, 'b) tuple2 = ('a * 'b) observable
 type ('a, 'b, 'c ) tuple3 = ('a * 'b * 'c) observable
-type ('a, 'b, 'c, 'd ) tuple4 = ('a * 'b * 'c) observable
+type ('a, 'b, 'c, 'd ) tuple4 = ('a * 'b * 'c * 'd) observable
 type ('a, 'b, 'c, 'd, 'e) tuple5 = ('a * 'b * 'c * 'd * 'e) observable
 type ('a, 'b, 'c, 'd, 'e, 'f) tuple6 = ('a * 'b * 'c * 'd * 'e * 'f) observable
 
@@ -119,11 +119,24 @@ external empty : 'a observable = "EMPTY"
 
 (* OPERATOR: forkJoin *)
 (* No support for promise or arrays *)
-external forkJoin2 : ('a, 'b) t2 = "forkJoin" [@@bs.module "rxjs"]
-external forkJoin3 : ('a, 'b, 'c) t3 = "forkJoin" [@@bs.module "rxjs"]
-external forkJoin4 : ('a, 'b, 'c, 'd) t4 = "forkJoin" [@@bs.module "rxjs"]
-external forkJoin5 : ('a, 'b, 'c, 'd, 'e) t5 = "forkJoin" [@@bs.module "rxjs"]
-external forkJoin6 : ('a, 'b, 'c, 'd, 'e, 'f) t6 = "forkJoin" [@@bs.module "rxjs"]
+external forkJoin2 : 'a observable -> 'b observable -> ('a, 'b) tuple2
+  = "forkJoin" [@@bs.module "rxjs"]
+
+external forkJoin3 : 'a observable -> 'b observable -> 'c observable -> ('a, 'b, 'c ) tuple3
+  = "forkJoin" [@@bs.module "rxjs"]
+
+external forkJoin4 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> ('a, 'b, 'c, 'd ) tuple4
+  = "forkJoin" [@@bs.module "rxjs"]
+
+external forkJoin5 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> ('a, 'b, 'c, 'd, 'e) tuple5
+  = "forkJoin" [@@bs.module "rxjs"]
+
+external forkJoin6 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> 'f observable
+    -> ('a, 'b, 'c, 'd, 'e, 'f) tuple6
+  = "forkJoin" [@@bs.module "rxjs"]
 
 (* OPERATOR: from *)
 (* Note: No support for iterables and schedulers *)
@@ -164,8 +177,21 @@ external timerDated : Js.Date.t -> int -> int observable = "timer"
   [@@bs.module "rxjs"]
 
 (* OPERATOR: zip *)
-external zip2 : ('a, 'b) t2 = "zip" [@@bs.module "rxjs"]
-external zip3 : ('a, 'b, 'c) t3 = "zip" [@@bs.module "rxjs"]
-external zip4 : ('a, 'b, 'c, 'd) t4 = "zip" [@@bs.module "rxjs"]
-external zip5 : ('a, 'b, 'c, 'd, 'e) t5 = "zip" [@@bs.module "rxjs"]
-external zip6 : ('a, 'b, 'c, 'd, 'e, 'f) t6 = "combineLatest" [@@bs.module "rxjs"]
+external zip2 : 'a observable -> 'b observable -> ('a, 'b) tuple2
+  = "zip" [@@bs.module "rxjs"]
+
+external zip3 : 'a observable -> 'b observable -> 'c observable -> ('a, 'b, 'c ) tuple3
+  = "zip" [@@bs.module "rxjs"]
+
+external zip4 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> ('a, 'b, 'c, 'd ) tuple4
+  = "zip" [@@bs.module "rxjs"]
+
+external zip5 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> ('a, 'b, 'c, 'd, 'e) tuple5
+  = "zip" [@@bs.module "rxjs"]
+
+external zip6 :
+  'a observable -> 'b observable -> 'c observable -> 'd observable -> 'e observable -> 'f observable
+    -> ('a, 'b, 'c, 'd, 'e, 'f) tuple6
+  = "zip" [@@bs.module "rxjs"]
