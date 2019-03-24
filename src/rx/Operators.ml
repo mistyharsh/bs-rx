@@ -49,6 +49,11 @@ external debouncePromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) -> ('a, 'a) ope
 external debounceTime : int -> ?scheduler:scheduler -> unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: defaultIfEmpty *)
+(* Null values are not allowed and hence no default null value *)
+external defaultIfEmpty : 'a -> unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: delay *)
 external delay : int -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
