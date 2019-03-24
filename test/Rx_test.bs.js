@@ -19,7 +19,7 @@ var twoObs = Rxjs.Observable.create((function (obs) {
         return /* () */0;
       }));
 
-Jest.describe("Expect", (function (param) {
+Jest.describe("Static function: create", (function (param) {
         Jest.test("Sample test", (function (param) {
                 return Jest.Expect[/* toBe */2](3, Jest.Expect[/* expect */0](3));
               }));
@@ -78,6 +78,32 @@ Jest.describe("Static operator: forkJoin", (function (param) {
                       var testObs = Rxjs.forkJoin(twoObs, twoObs, twoObs, twoObs);
                       testObs.subscribe((function (value) {
                               return Curry._1(finish, Jest.Expect[/* toEqual */12](/* tuple */[
+                                              200,
+                                              200,
+                                              200,
+                                              200
+                                            ], Jest.Expect[/* expect */0](value)));
+                            }));
+                      return /* () */0;
+                    }));
+      }));
+
+Jest.describe("Static operator: zip", (function (param) {
+        Jest.testAsync("zip2", undefined, (function (finish) {
+                var testObs = Rxjs.zip(oneObs, twoObs);
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toEqual */12](/* tuple */[
+                                        10,
+                                        100
+                                      ], Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        return Jest.testAsync("zip5", undefined, (function (finish) {
+                      var testObs = Curry._1(Operators.takeLast(1), Rxjs.zip(twoObs, twoObs, twoObs, twoObs, twoObs));
+                      testObs.subscribe((function (value) {
+                              return Curry._1(finish, Jest.Expect[/* toEqual */12](/* tuple */[
+                                              200,
                                               200,
                                               200,
                                               200,
@@ -205,10 +231,17 @@ Jest.describe("Static operators", (function (param) {
                       }));
                 return /* () */0;
               }));
-        return Jest.testAsync("range", undefined, (function (finish) {
-                      var testObs = Rxjs.range(10, 1, undefined);
+        Jest.testAsync("range", undefined, (function (finish) {
+                var testObs = Rxjs.range(10, 1, undefined);
+                testObs.subscribe((function (value) {
+                        return Curry._1(finish, Jest.Expect[/* toBe */2](10, Jest.Expect[/* expect */0](value)));
+                      }));
+                return /* () */0;
+              }));
+        return Jest.testAsync("timer", 1000, (function (finish) {
+                      var testObs = Curry._1(Operators.takeLast(1), Curry._1(Operators.take(2), Rxjs.timer(100, 100)));
                       testObs.subscribe((function (value) {
-                              return Curry._1(finish, Jest.Expect[/* toBe */2](10, Jest.Expect[/* expect */0](value)));
+                              return Curry._1(finish, Jest.Expect[/* toBe */2](1, Jest.Expect[/* expect */0](value)));
                             }));
                       return /* () */0;
                     }));

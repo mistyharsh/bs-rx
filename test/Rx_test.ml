@@ -16,7 +16,7 @@ let twoObs = create (fun obs ->
   complete obs
 )
 
-let _ = describe "Expect" begin fun () ->
+let _ = describe "Static function: create" begin fun () ->
   let open Expect in
 
   test "Sample test" (fun ()  -> expect (1 + 2) |> (toBe 3));
@@ -71,7 +71,31 @@ let _ = describe "Static operator: forkJoin" begin fun () ->
 
 end
 
+let _ = describe "Static operator: zip" begin fun () ->
 
+  let open Expect in
+
+  testAsync "zip2" begin fun finish ->
+
+    let testObs = zip2 oneObs twoObs in
+
+    let _sub = subscribe testObs (fun value ->
+      expect value |> toEqual (10, 100) |> finish) in
+
+    ignore()
+  end;
+
+  testAsync "zip5" begin fun finish ->
+
+    let testObs = zip5 twoObs twoObs twoObs twoObs twoObs |> takeLast 1 in
+
+    let _sub = subscribe testObs (fun value ->
+      expect value |> toEqual (200, 200, 200, 200, 200) |> finish) in
+
+    ignore()
+  end;
+
+end
 
 let _ = describe "Static operators" begin fun () ->
   let open Expect in
@@ -170,6 +194,14 @@ let _ = describe "Static operators" begin fun () ->
 
     subscribe testObs (fun value ->
       expect value |> toBe 10 |> finish) |> ignore
+  end;
+
+  testAsync "timer" ~timeout:1000 begin fun finish ->
+
+    let testObs = timer 100 100 |> take 2 |> takeLast 1 in
+
+    subscribe testObs (fun value ->
+      expect value |> toBe 1 |> finish) |> ignore
   end;
 
 end

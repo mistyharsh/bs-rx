@@ -105,7 +105,7 @@ external mapi : ('a -> int -> 'b [@bs.uncurry]) -> ('a, 'b) operator = "map"
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: mapTo *)
-external mapTo : 'b -> ('a, 'b) operator = "mapTo"
+external mapTo : 'b -> ('a, 'b) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: mergeAll *)

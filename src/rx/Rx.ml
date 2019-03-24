@@ -165,6 +165,7 @@ external race : 'a observable array -> 'a observable = ""
   [@@bs.module "rxjs"] [@@bs.variadic]
 
 (* OPERATOR: range *)
+(* Range not working without count *)
 external range : int -> ?count:int -> unit -> ?scheduler:scheduler -> unit -> int observable = ""
   [@@bs.module "rxjs"]
 
