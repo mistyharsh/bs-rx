@@ -51,7 +51,7 @@ let y1 = opr1 stream1
   |> mapi (fun item index -> item + index + 4)
   |> map begin fun x -> x + 5 end
   |> switchMap (fun _x -> stream1)
-  |> switchToArray (fun _ -> [| 10 |])
+  |> switchMapArray (fun _ -> [| 10 |])
   |> filteri (fun _x _y -> false)
   |> debounceTime 1000 ~scheduler ()
   |> debounceTime 100 ()

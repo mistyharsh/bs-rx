@@ -28,6 +28,9 @@ external combineAll : unit -> ('a observable, 'a array) operator = ""
 external concatAll : unit -> ('a observable, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
+external concatAllPromises : unit -> ('a Js.Promise.t, 'a) operator = "concatAll"
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: concatMap *)
 external concatMap : ('a -> int -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = ""
   [@@bs.module "rxjs/operators"]
@@ -36,6 +39,17 @@ external concatMapArray : ('a -> int -> 'b array [@bs.uncurry]) -> ('a, 'b) oper
   [@@bs.module "rxjs/operators"]
 
 external concatMapPromise : ('a -> int -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) operator = "concatMap"
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: concatMapTo *)
+external concatMapTo : ('a observable) -> ('b, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external concatMapToPromise : ('a Js.Promise.t) -> ('a, 'b) operator = "concatMapTo"
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: count *)
+external count : ?predicate:('a -> int -> 'a observable [@bs.uncurry]) -> ('a, int) operator = ""
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: debounce *)
@@ -68,13 +82,25 @@ external delayWhen : ('a -> int -> 'any observable [@bs.uncurry]) -> ('a, 'a) op
 external delayWhenLazy : ('a -> int -> 'any observable [@bs.uncurry]) -> 'any observable -> ('a, 'a) operator = "delayWhen"
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: distinct *)
+(* Use map |> distinct for keySelector *)
+external distinct : unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: distinctUntilChanged *)
 external distinctUntilChanged : ?compare:('a -> 'a -> bool [@bs.uncurry]) -> unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: distinctUntilKeyChanged is not required *)
+(* Use map and distinct instead *)
+
 (* OPERATOR: elementAt *)
 external elementAt : int -> ?default:'a -> unit -> ('a, 'a) operator = ""
   [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: endWith *)
+external endWith : 'a array -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"] [@@bs.variadic]
 
 (* OPERATOR: every *)
 external every : ('a -> int -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
@@ -102,11 +128,26 @@ external filter : ('a -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
 external filteri : ('a -> int -> bool [@bs.uncurry]) -> ('a, 'a) operator = "filter"
   [@@bs.module "rxjs/operators"]
 
+(* OPERATOR: findIndex *)
+external findIndex : ('a -> int -> 'a observable -> bool [@bs.uncurry]) -> ('a, int) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: isEmpty *)
+external isEmpty : unit -> ('a, bool) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 (* OPERATOR: map *)
 external map : ('a -> 'b [@bs.uncurry]) -> ('a, 'b) operator = ""
   [@@bs.module "rxjs/operators"]
 
 external mapi : ('a -> int -> 'b [@bs.uncurry]) -> ('a, 'b) operator = "map"
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: max *)
+external max : unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external maxCustom : ('a -> 'a -> bool [@bs.uncurry]) -> ('a, 'a) operator = "max"
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: mapTo *)
@@ -126,6 +167,24 @@ external mergeMapArray : ('a -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = "
 
 external mergeMapPromise : ('a -> 'b Js.Promise.t [@bs.uncurry]) ->  ('a, 'b) operator = "mergeMap"
   [@@bs.module "rxjs/operators"]
+
+external mergeMapTo : 'b observable -> ?concurrent:int -> unit -> ('a, 'b) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external mergeMapToPromise : 'b Js.Promise.t -> ?concurrent:int -> unit -> ('a, 'b) operator = "mergeMapTo"
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: min *)
+external min : unit -> ('a, 'a) operator = ""
+  [@@bs.module "rxjs/operators"]
+
+external minCustom : ('a -> 'a -> bool [@bs.uncurry]) -> ('a, 'a) operator = "min"
+  [@@bs.module "rxjs/operators"]
+
+(* OPERATOR: pairwise *)
+external pairwise : unit -> ('a, ('a * 'a)) operator = ""
+  [@@bs.module "rxjs/operators"]
+
 
 (* OPERATOR: reduce *)
 external reduce : ('acc -> 'a -> int -> 'acc [@bs.uncurry]) -> 'acc -> ('a, 'acc) operator = ""
@@ -185,10 +244,10 @@ external skipWhile : ('a -> int -> bool [@bs.uncurry]) -> ('a, 'a) operator = ""
 external switchMap : ('a -> 'b observable [@bs.uncurry]) -> ('a, 'b) operator = ""
   [@@bs.module "rxjs/operators"]
 
-external switchToArray : ('a -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
+external switchMapArray : ('a -> 'b array [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
   [@@bs.module "rxjs/operators"]
 
-external switchToPromise : ('a -> ('b, 'e) Js.promise [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
+external switchMapPromise : ('a -> ('b, 'e) Js.promise [@bs.uncurry]) -> ('a, 'b) operator = "switchMap"
   [@@bs.module "rxjs/operators"]
 
 (* OPERATOR: take *)
@@ -246,3 +305,13 @@ external withLatestFrom6 :
   'b observable -> 'c observable -> 'd observable -> 'e observable -> 'f observable
     -> ('a, ('a * 'b * 'c * 'd * 'e * 'f)) operator = "withLatestFrom"
   [@@bs.module "rxjs/operators"]
+
+
+(* Dependent Operators *)
+
+(* OPERATOR: find *)
+(* Find depends on map operator *)
+external _find : ('a -> int -> 'a observable -> bool [@bs.uncurry]) -> ('a, 'a Js.Undefined.t) operator = "find"
+  [@@bs.module "rxjs/operators"]
+
+let find predicate source = source |> _find predicate |> map Js.Undefined.toOption
