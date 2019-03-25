@@ -13,9 +13,9 @@ var bnc2 = Rxjs.bindNodeCallback((function (prim, prim$1, prim$2) {
         return /* () */0;
       }));
 
-var z1 = bnc1("/home/harshal/ub/bs-marble/README.md");
+var z1 = bnc1("/home/harshal/ub/bs-rx/README.md");
 
-var z2 = bnc2("/home/harshal/ub/bs-marble/README.md", "utf-8");
+var z2 = bnc2("/home/harshal/ub/bs-rx/README.md", "utf-8");
 
 z1.subscribe((function (y) {
         console.log(y);

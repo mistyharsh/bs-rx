@@ -1,17 +1,15 @@
 ####{BSB GENERATED: NO EDIT
-B lib/bs
-FLG -open BsMarblejs
-FLG -ppx /home/harshal/ub/bs-marble/node_modules/bs-platform/lib/bsppx.exe
-S /home/harshal/ub/bs-marble/node_modules/bs-platform/lib/ocaml
-B /home/harshal/ub/bs-marble/node_modules/bs-platform/lib/ocaml
+FLG -ppx /home/harshal/ub/bs-rx/node_modules/bs-platform/lib/bsppx.exe
+S /home/harshal/ub/bs-rx/node_modules/bs-platform/lib/ocaml
+B /home/harshal/ub/bs-rx/node_modules/bs-platform/lib/ocaml
 FLG -nostdlib -color always
 FLG -w -30-40+6+7+27+32..39+44+45+101
-S /home/harshal/ub/bs-marble/node_modules/@glennsl/bs-jest/lib/ocaml
-B /home/harshal/ub/bs-marble/node_modules/@glennsl/bs-jest/lib/ocaml
+S /home/harshal/ub/bs-rx/node_modules/@glennsl/bs-jest/lib/ocaml
+B /home/harshal/ub/bs-rx/node_modules/@glennsl/bs-jest/lib/ocaml
 S src-example
 B lib/bs/src-example
 S test
 B lib/bs/test
-S src/rx
-B lib/bs/src/rx
+S src
+B lib/bs/src
 ####BSB GENERATED: NO EDIT}

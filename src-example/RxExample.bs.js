@@ -2,10 +2,10 @@
 
 import * as Rxjs from "rxjs";
 import * as Curry from "bs-platform/lib/es6/curry.js";
+import * as Operators from "../src/Operators.bs.js";
 import * as Caml_format from "bs-platform/lib/es6/caml_format.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
-import * as Operators from "rxjs/operators";
-import * as Operators$BsMarblejs from "../src/rx/Operators.bs.js";
+import * as Operators$1 from "rxjs/operators";
 
 var stream1 = Rxjs.Observable.create((function (obs) {
         obs.next(20);
@@ -21,40 +21,40 @@ var subscription1 = stream1.subscribe((function (myVal) {
         return /* () */0;
       }));
 
-var x = Curry._1(Operators.map((function (item) {
+var x = Curry._1(Operators$1.map((function (item) {
             return item + 20 | 0;
           })), stream1);
 
-var b1 = Curry._1(Operators.bufferCount(4, 10), stream1);
+var b1 = Curry._1(Operators$1.bufferCount(4, 10), stream1);
 
-var b2 = Curry._1(Operators.bufferCount(4, undefined), stream1);
+var b2 = Curry._1(Operators$1.bufferCount(4, undefined), stream1);
 
-var s1 = Curry._1(Operators.scan((function (_acc, nextVal, _index) {
+var s1 = Curry._1(Operators$1.scan((function (_acc, nextVal, _index) {
             return nextVal;
           }), 10), stream1);
 
-var wLF1 = Curry._1(Operators.withLatestFrom(stream1), stream2);
+var wLF1 = Curry._1(Operators$1.withLatestFrom(stream1), stream2);
 
-var mapped = Operators.map((function (item) {
+var mapped = Operators$1.map((function (item) {
         return item + 4 | 0;
       }));
 
-var opr1 = Operators.map((function (item) {
+var opr1 = Operators$1.map((function (item) {
         return item + 5 | 0;
       }));
 
-Operators.catchError((function (_err, _caught) {
+Operators$1.catchError((function (_err, _caught) {
         return stream1;
       }));
 
-var stream11 = Curry._1(Operators.map((function (x) {
+var stream11 = Curry._1(Operators$1.map((function (x) {
             return /* `Int */[
                     3654863,
                     x
                   ];
           })), stream1);
 
-var stream22 = Curry._1(Operators.map((function (x) {
+var stream22 = Curry._1(Operators$1.map((function (x) {
             return /* `Str */[
                     4153489,
                     x
@@ -65,7 +65,7 @@ var combined = Rxjs.combineLatest(stream1, stream2);
 
 var merged2 = Rxjs.merge(stream1, Rxjs.EMPTY);
 
-var merged = Curry._1(Operators.map((function (x) {
+var merged = Curry._1(Operators$1.map((function (x) {
             if (x[0] >= 4153489) {
               return Caml_format.caml_int_of_string(x[1]);
             } else {
@@ -73,48 +73,48 @@ var merged = Curry._1(Operators.map((function (x) {
             }
           })), Rxjs.merge(stream11, stream22));
 
-var mergedAll = Curry._1(Operators.mergeAll(10), Rxjs.of(stream1));
+var mergedAll = Curry._1(Operators$1.mergeAll(10), Rxjs.of(stream1));
 
 var partial_arg = (function (_x, _y) {
     return true;
   });
 
-var eta = Operators$BsMarblejs.repeat(10, Curry._1(Operators.takeUntil(stream1), Curry._1(Operators.combineAll(), Curry._1(Operators.takeWhile((function (_x, _i) {
+var eta = Operators.repeat(10, Curry._1(Operators$1.takeUntil(stream1), Curry._1(Operators$1.combineAll(), Curry._1(Operators$1.takeWhile((function (_x, _i) {
                         return true;
-                      }), undefined), Curry._1(Operators.takeLast(5), Curry._1(Operators.map((function (_x) {
+                      }), undefined), Curry._1(Operators$1.takeLast(5), Curry._1(Operators$1.map((function (_x) {
                                 return stream1;
-                              })), Curry._1(Operators.scan((function (_acc, nextVal, _index) {
+                              })), Curry._1(Operators$1.scan((function (_acc, nextVal, _index) {
                                     return nextVal;
-                                  }), 10), Curry._1(Operators.elementAt(100, 10), Curry._1(Operators.elementAt(0, undefined), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get(Curry.__2(partial_arg))), Curry._1(Operators.distinctUntilChanged(Caml_option.option_get((function (param, param$1) {
+                                  }), 10), Curry._1(Operators$1.elementAt(100, 10), Curry._1(Operators$1.elementAt(0, undefined), Curry._1(Operators$1.distinctUntilChanged(Caml_option.option_get(Curry.__2(partial_arg))), Curry._1(Operators$1.distinctUntilChanged(Caml_option.option_get((function (param, param$1) {
                                                         return Curry._2(undefined, param, param$1);
-                                                      }))), Curry._1(Operators.mergeMap((function (_x) {
+                                                      }))), Curry._1(Operators$1.mergeMap((function (_x) {
                                                         return /* array */[
                                                                 10,
                                                                 20
                                                               ];
-                                                      })), Curry._1(Operators.mergeMap((function (_x) {
+                                                      })), Curry._1(Operators$1.mergeMap((function (_x) {
                                                             return stream1;
-                                                          })), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1, stream1), Curry._1(Operators.withLatestFrom(stream1, stream1), Curry._1(Operators.withLatestFrom(stream1), Curry._1(Operators.take(100), Curry._1(Operators.catchError((function (_err, _caught) {
+                                                          })), Curry._1(Operators$1.withLatestFrom(stream1, stream1, stream1, stream1), Curry._1(Operators$1.withLatestFrom(stream1, stream1, stream1), Curry._1(Operators$1.withLatestFrom(stream1, stream1), Curry._1(Operators$1.withLatestFrom(stream1), Curry._1(Operators$1.take(100), Curry._1(Operators$1.catchError((function (_err, _caught) {
                                                                                     return stream1;
-                                                                                  })), Curry._1(Operators.debounceTime(100, undefined), Curry._1(Operators.debounceTime(1000, scheduler), Curry._1(Operators.filter((function (_x, _y) {
+                                                                                  })), Curry._1(Operators$1.debounceTime(100, undefined), Curry._1(Operators$1.debounceTime(1000, scheduler), Curry._1(Operators$1.filter((function (_x, _y) {
                                                                                                 return false;
-                                                                                              })), Curry._1(Operators.switchMap((function (param) {
+                                                                                              })), Curry._1(Operators$1.switchMap((function (param) {
                                                                                                     return /* array */[10];
-                                                                                                  })), Curry._1(Operators.switchMap((function (_x) {
+                                                                                                  })), Curry._1(Operators$1.switchMap((function (_x) {
                                                                                                         return stream1;
-                                                                                                      })), Curry._1(Operators.map((function (x) {
+                                                                                                      })), Curry._1(Operators$1.map((function (x) {
                                                                                                             return x + 5 | 0;
-                                                                                                          })), Curry._1(Operators.map((function (item, index) {
+                                                                                                          })), Curry._1(Operators$1.map((function (item, index) {
                                                                                                                 return (item + index | 0) + 4 | 0;
                                                                                                               })), Curry._1(opr1, stream1)))))))))))))))))))))))))));
 
-var y1 = Curry._1(Operators.sample(stream1), Curry._1(Operators.sampleTime(100, scheduler), Curry._1(Operators.retry(10), Curry._1(Operators.retryWhen((function (_err) {
+var y1 = Curry._1(Operators$1.sample(stream1), Curry._1(Operators$1.sampleTime(100, scheduler), Curry._1(Operators$1.retry(10), Curry._1(Operators$1.retryWhen((function (_err) {
                         return stream1;
-                      })), Curry._1(Operators.tap((function (x) {
+                      })), Curry._1(Operators$1.tap((function (x) {
                             return /* () */0;
-                          })), Operators$BsMarblejs.repeat(undefined, eta))))));
+                          })), Operators.repeat(undefined, eta))))));
 
-var y2 = Curry._1(Operators.mapTo(10), stream1);
+var y2 = Curry._1(Operators$1.mapTo(10), stream1);
 
 var range1 = Rxjs.range(1, undefined, undefined);
 

@@ -1,5 +1,5 @@
 {
-  "name": "bs-marblejs",
+  "name": "bs-rx",
   "version": "0.1.0",
   "description": "Bucklescript bindings for Marble.js in ReasonML",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mistyharsh/bs-marblejs.git"
+    "url": "git+https://github.com/mistyharsh/bs-rx.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mistyharsh/bs-marblejs/issues"
+    "url": "https://github.com/mistyharsh/bs-rx/issues"
   },
-  "homepage": "https://github.com/mistyharsh/bs-marblejs#readme",
+  "homepage": "https://github.com/mistyharsh/bs-rx#readme",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",

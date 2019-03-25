@@ -1,5 +1,5 @@
 {
-    "name": "bs-marblejs",
+    "name": "bs-rx",
     "version": "0.1.0",
     "sources":
     [
@@ -30,6 +30,6 @@
     "warnings": {
         "error" : "+101"
     },
-    "namespace": true,
+    "namespace": false,
     "refmt": 3
 }
