@@ -78,3 +78,49 @@ let v = join [| "a"; "b"|]
 ```
 
 ### `[@@bs.send]` - TODO
+
+### `[@@bs.deriving abstract]`
+Bucklescript compiles record types, variants to array as mentioned [here](https://bucklescript.github.io/docs/en/common-data-types.html#design-decisions). But it means record will be compiled as follows:
+
+```ocaml
+type person = {
+  age: int;
+  name: string;
+}
+
+let me = { age = 5; name = "Big Reason" }
+```
+
+The corresponding JS code is:
+
+```javascript
+var me = /* record */[
+  /* age */5,
+  /* name */"Big Reason"
+];
+
+exports.me = me;
+```
+The `bs.deriving abstract` annotation turns it into an "abstract type" (aka you don't know what the actual value's shape). This is when **Record Mode** feature of the Bucklescript can be used where it converts the record into plain JS object instead of array. Note that, since `bs.deriving` abstract hides the actual record shape, you can't access a field using e.g. `joe.age`. We remediate this by generating getter and setters.
+
+```ocaml
+type person = {
+  age: int;
+  name: string;
+} [@@bs.deriving abstract]
+
+let me = person ~name:"Joe" ~age:20
+```
+
+This will be compiled to plain JS object as:
+
+```javascript
+var me = {
+  age: 20,
+  name: "Joe"
+};
+
+exports.me = me;
+```
+
+Read more about this issue [issue here](https://github.com/BuckleScript/bucklescript/issues/2922).
