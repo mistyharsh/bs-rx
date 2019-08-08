@@ -103,6 +103,8 @@ exports.me = me;
 ```
 The `bs.deriving abstract` annotation turns it into an "abstract type" (aka you don't know what the actual value's shape). This is when **Record Mode** feature of the Bucklescript can be used where it converts the record into plain JS object instead of array. Note that, since `bs.deriving` abstract hides the actual record shape, you can't access a field using e.g. `joe.age`. We remediate this by generating getter and setters.
 
+Also note that, JS objects and OCaml records are diffferent - OCaml cares about the order while JS object does not. [Read here](https://github.com/BuckleScript/bucklescript/issues/1262).
+
 ```ocaml
 type person = {
   age: int;
